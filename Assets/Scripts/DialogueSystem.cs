@@ -42,13 +42,13 @@ public class DialogueSystem : MonoBehaviour
             }
 
             Destroy(other.gameObject);
-            StartCoroutine("PrintAfterDelay");
+            StartCoroutine("DisableUI");
 
         }
     }
 
 
-    IEnumerator PrintAfterDelay()
+    IEnumerator DisableUI()
     {
         yield return new WaitForSeconds(seconds);
         speakerUI.SetActive(false);
