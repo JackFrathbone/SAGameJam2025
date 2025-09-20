@@ -11,6 +11,11 @@ public class EnemyController : MonoBehaviour
     [SerializeField] float _attackChargeSpeed = 0.5f;
     [SerializeField] float _attackCooldownTime = 0.25f;
     [SerializeField] float _attackDistance = 3f;
+    [SerializeField] float _rotationSpeed = 5f;
+
+    [SerializeField] private bool _rangedAttack = false;
+    [SerializeField] private Transform _projectileParent;
+    [SerializeField] private GameObject _projectilePrefab;
 
     private int _currentHealth;
 
@@ -40,6 +45,11 @@ public class EnemyController : MonoBehaviour
     private void OnDisable()
     {
         DOTween.Kill(_mainMat);
+    }
+
+    private void Update()
+    {
+        RotateTowardsPlayer();
     }
 
     private void FixedUpdate()
@@ -82,6 +92,18 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    void RotateTowardsPlayer()
+    {
+        Vector3 direction = _playerController.transform.position - _projectileParent.transform.position;
+
+        if (direction != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+            transform.rotation = Quaternion.Slerp(_projectileParent.transform.rotation, targetRotation, Time.deltaTime * _rotationSpeed);
+        }
+    }
+
     public void TakeDamage(int i)
     {
         _currentHealth -= i;
@@ -97,7 +119,7 @@ public class EnemyController : MonoBehaviour
         _attacking = true;
         _agent.enabled = false;
 
-        _mainMat.DOKill();
+        //_mainMat.DOKill();
         _mainMat.DOColor(Color.red, _attackChargeSpeed).SetEase(Ease.Flash).SetId(this).OnComplete(EndAttack);
     }
 
@@ -110,9 +132,17 @@ public class EnemyController : MonoBehaviour
 
         _attackCooldown = _attackCooldownTime;
 
-        if (Vector3.Distance(transform.position, _playerController.transform.position) <= _agent.stoppingDistance)
+        if (!_rangedAttack)
         {
-            _playerController.TakeDamage(_damage, this.transform);
+            if (Vector3.Distance(transform.position, _playerController.transform.position) <= _agent.stoppingDistance)
+            {
+                _playerController.TakeDamage(_damage, this.transform);
+            }
+        }
+        else
+        {
+            EnemyProjectile projectile = Instantiate(_projectilePrefab, _projectileParent.position, _projectileParent.rotation).GetComponent<EnemyProjectile>();
+            projectile.SetDamage(_damage);
         }
     }
 
