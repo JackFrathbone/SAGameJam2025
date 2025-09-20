@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,6 +35,8 @@ public class PlayerController : MonoBehaviour
     //For slopes
     private Vector3 _hitNormal;
     #endregion
+
+    [SerializeField] GameObject _projectilePrefab;
 
     [SerializeField] int _totalHealth = 100;
     [SerializeField] int _totalMana = 100;
@@ -249,9 +252,13 @@ public class PlayerController : MonoBehaviour
     {
         int manaCost = (int)Mathf.Clamp((_chargeTime * 10), 5f, 25f);
 
-        Debug.Log($"Attack with charge {_chargeTime} and mana cost of {manaCost}");
-
         if (_currentMana >= manaCost)
+        {
             _currentMana -= manaCost;
+
+            Vector3 finalPosition = _playerCamera.transform.position + _playerCamera.transform.forward * 1f;
+            Instantiate(_projectilePrefab, finalPosition, _playerCamera.transform.rotation);
+        }
+          
     }
 }

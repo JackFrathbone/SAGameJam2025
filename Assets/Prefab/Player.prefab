@@ -83,6 +83,7 @@ MonoBehaviour:
   _cantSprint: 0
   _cantMove: 0
   _isCrouching: 0
+  _projectilePrefab: {fileID: 9153542789265613806, guid: 94d27ebf9c275c344a709b4c1b45f3a2, type: 3}
   _totalHealth: 100
   _totalMana: 100
   _regenSpeed: 1
