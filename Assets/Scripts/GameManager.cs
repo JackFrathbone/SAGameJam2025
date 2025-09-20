@@ -1,8 +1,15 @@
+using RenderHeads.Services;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoService
 {
+    private AudioSource _clipAudioSource;
+
+    private void Start()
+    {
+        _clipAudioSource = GetComponent<AudioSource>();
+    }
 
     private void Update()
     {
@@ -19,4 +26,17 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void PlayAudioClip(AudioClip clip, float volume = 0.5f, bool randomPitch = false, float minPitch = -0.85f, float maxPitch = 0.25f, bool loop = false)
+    {
+        _clipAudioSource.pitch = randomPitch ? Random.Range(minPitch, maxPitch) : 1;
+
+        if (_clipAudioSource.loop)
+        {
+            _clipAudioSource.Stop();
+        }
+
+        _clipAudioSource.loop = loop;
+
+        _clipAudioSource.PlayOneShot(clip, volume);
+    }
 }

@@ -91,6 +91,11 @@ MonoBehaviour:
   _damageInvulnerability: 1.5
   _healthBar: {fileID: 3920852672921783217}
   _manaBar: {fileID: 9104853909529059693}
+  _syphonClip: {fileID: 8300000, guid: 539ea9e6420e2b74d8f22ddbacf0e359, type: 3}
+  _finishSyphon: {fileID: 8300000, guid: d88395dfe1e0f324a8fa17ffa5f32648, type: 3}
+  _dashClips:
+  - {fileID: 8300000, guid: 4b546111435fe0a4989ae4e1c10f53de, type: 3}
+  - {fileID: 8300000, guid: 88acf558e1ef9b0448d870e68c14fa17, type: 3}
 --- !u!114 &7597250250145563237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,7 +180,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.1
   far clip plane: 1000
   field of view: 60
   orthographic: 0

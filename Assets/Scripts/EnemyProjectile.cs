@@ -1,17 +1,26 @@
+using RenderHeads.Services;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyProjectile : MonoBehaviour
 {
+    [Header("Settings")]
     [SerializeField] float _speed = 10f;
 
+    [SerializeField] List<AudioClip> _launchClips;
+    [SerializeField] AudioClip _hitClip;
     public void SetDamage(int d) => d = _damage;
     private int _damage = 5;
     private Rigidbody _rigidbody;
 
+    private LazyService<GameManager> _gameManager;
 
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
+
+
+        _gameManager.Value.PlayAudioClip(_launchClips[Random.Range(0, _launchClips.Count)], 0.25f);
     }
 
     private void FixedUpdate()
@@ -38,6 +47,7 @@ public class EnemyProjectile : MonoBehaviour
             }
         }
 
+        _gameManager.Value.PlayAudioClip(_hitClip);
         Destroy(gameObject);
     }
 }
