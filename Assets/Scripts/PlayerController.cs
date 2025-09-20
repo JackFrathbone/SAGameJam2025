@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -41,12 +40,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] int _totalHealth = 100;
     [SerializeField] int _totalMana = 100;
     [SerializeField, Tooltip("in seconds")] float _regenSpeed = 1f;
+    [SerializeField] float _damageInvulnerability = 1.5f;
 
     private int _currentHealth = 100;
     private int _currentMana = 0;
 
     private float _regenTimer;
     private float _chargeTime;
+
+    private float _damageCooldown;
 
     [SerializeField] Image _healthBar;
     [SerializeField] Image _manaBar;
@@ -69,6 +71,8 @@ public class PlayerController : MonoBehaviour
         UpdateBars();
         CheckAttack();
         RegenHealth();
+
+        _damageCooldown -= Time.deltaTime;
     }
 
     public void StopMovement()
@@ -204,7 +208,7 @@ public class PlayerController : MonoBehaviour
 
         if (_regenTimer >= _regenSpeed)
         {
-            _currentHealth += 1;
+            AddHealth(1);
 
             _regenTimer = 0f;
         }
@@ -221,10 +225,25 @@ public class PlayerController : MonoBehaviour
         return total > 0 ? ((float)current / (float)total) * 100f : 0f;
     }
 
-    public void TakeDamage(int i)
+    private void AddHealth(int i)
     {
-        _currentHealth -= i;
-        _currentMana += i;
+        Mathf.Clamp(_currentHealth += i, 0f, _totalHealth);
+    }
+
+    private void AddMana(int i)
+    {
+        Mathf.Clamp(_currentMana += i, 0f, _totalMana);
+    }
+
+    public void TakeDamage(int i, bool ignoreCooldown = false)
+    {
+        if (_damageCooldown <= 0 || ignoreCooldown == true)
+        {
+            AddHealth(-i);
+            AddMana(i);
+        }
+
+        _damageCooldown = _damageInvulnerability;
     }
 
     private void CheckAttack()
@@ -242,10 +261,10 @@ public class PlayerController : MonoBehaviour
             _chargeTime = 0;
         }
 
-        if (Input.GetButtonDown("Fire2"))
-        {
-            TakeDamage(5);
-        }
+        /* if (Input.GetButtonDown("Fire2"))
+         {
+             TakeDamage(5, true);
+         }*/
     }
 
     private void DoAttack()
@@ -259,6 +278,6 @@ public class PlayerController : MonoBehaviour
             Vector3 finalPosition = _playerCamera.transform.position + _playerCamera.transform.forward * 1f;
             Instantiate(_projectilePrefab, finalPosition, _playerCamera.transform.rotation);
         }
-          
+
     }
 }

@@ -87,6 +87,7 @@ MonoBehaviour:
   _totalHealth: 100
   _totalMana: 100
   _regenSpeed: 1
+  _damageInvulnerability: 1.5
   _healthBar: {fileID: 3920852672921783217}
   _manaBar: {fileID: 9104853909529059693}
 --- !u!1 &4401235138239467756
