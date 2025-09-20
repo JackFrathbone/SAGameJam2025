@@ -1,3 +1,5 @@
+using DG.Tweening;
+using RenderHeads.Services;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -48,6 +50,8 @@ public class PlayerController : MonoBehaviour
     private int _currentHealth = 100;
     private int _currentMana = 0;
 
+    private bool _updatingBars;
+
     private float _regenTimer;
     private float _chargeTime;
 
@@ -55,6 +59,12 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] Image _healthBar;
     [SerializeField] Image _manaBar;
+
+    [Header("Audio")]
+    [SerializeField] private AudioClip _syphonClip;
+    [SerializeField] private AudioClip _finishSyphon;
+
+    private LazyService<GameManager> _gameManager;
 
     private void Start()
     {
@@ -65,6 +75,7 @@ public class PlayerController : MonoBehaviour
         _originalSpeed = _walkingSpeed;
 
         AllowMovement();
+        UpdateBars();
     }
 
     private void Update()
@@ -72,7 +83,7 @@ public class PlayerController : MonoBehaviour
         ToggleCrouch();
         MovePlayer();
         CheckDash();
-        UpdateBars();
+        //UpdateBars();
         CheckAttack();
         RegenHealth();
 
@@ -85,6 +96,12 @@ public class PlayerController : MonoBehaviour
         {
             TakeDamage(35, hit.transform);
         }
+    }
+
+    private void OnDisable()
+    {
+        DOTween.Kill(_healthBar);
+        DOTween.Kill(_manaBar);
     }
 
     public void StopMovement()
@@ -218,6 +235,9 @@ public class PlayerController : MonoBehaviour
 
     private void RegenHealth()
     {
+        if (_updatingBars)
+            return;
+
         _regenTimer += Time.deltaTime;
 
         if (_regenTimer >= _regenSpeed && _currentMana > 0)
@@ -243,12 +263,54 @@ public class PlayerController : MonoBehaviour
     private void AddHealth(int i)
     {
         _currentHealth = (int)Mathf.Clamp(_currentHealth += i, 0f, _totalHealth);
+
+        _healthBar.DOKill();
+
+        _updatingBars = true;
+
+        _healthBar.DOFillAmount(GetPercentage(_currentHealth, _totalHealth) / 100, 1f)
+        .SetEase(Ease.OutBounce)
+        .SetSpeedBased(true)
+        .OnComplete(() =>
+        {
+            _updatingBars = false;
+        });
     }
 
     private void AddMana(int i)
     {
+        if (i > 0)
+        {
+            _gameManager.Value.PlayAudioClip(_syphonClip, 0.25f, false, 0f, 0f, true);
+        }
+
         _currentMana = (int)Mathf.Clamp(_currentMana += i, 0f, _totalMana);
 
+        _manaBar.DOKill();
+
+        _updatingBars = true;
+
+        _manaBar.DOFillAmount(GetPercentage(_currentMana, _totalMana) / 100, 1f)
+            .SetSpeedBased(true)
+            .SetEase(Ease.OutBounce)
+            .OnComplete(() =>
+            {
+                if (i > 0)
+                {
+                    _gameManager.Value.PlayAudioClip(_finishSyphon, 0.5f);
+                }
+
+                _updatingBars = false;
+            })
+            .OnKill(() =>
+            {
+                if (i > 0)
+                {
+                    _gameManager.Value.PlayAudioClip(_finishSyphon, 0.5f);
+                }
+
+                _updatingBars = false;
+            });
     }
 
     public void TakeDamage(int i, Transform hitSource = null, bool ignoreCooldown = false)
