@@ -112,7 +112,7 @@ public class EnemyController : MonoBehaviour
 
         if (Vector3.Distance(transform.position, _playerController.transform.position) <= _agent.stoppingDistance)
         {
-            _playerController.TakeDamage(_damage);
+            _playerController.TakeDamage(_damage, this.transform);
         }
     }
 

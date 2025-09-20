@@ -1959,19 +1959,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: FloorSpikes01
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e4857ebfcbf6e33469489e39ddd1fcfd, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e4857ebfcbf6e33469489e39ddd1fcfd, type: 3}
+      propertyPath: m_TagString
+      value: Spike
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e4857ebfcbf6e33469489e39ddd1fcfd, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2144154645}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e4857ebfcbf6e33469489e39ddd1fcfd, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 2144154640}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e4857ebfcbf6e33469489e39ddd1fcfd, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2144154644}
   m_SourcePrefab: {fileID: 100100000, guid: e4857ebfcbf6e33469489e39ddd1fcfd, type: 3}
 --- !u!1 &2144154639 stripped
 GameObject:
@@ -1999,46 +2001,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.02222547, y: 0.021762274, z: 0.025714094}
   m_Center: {x: -0.000048353802, y: 0.00020955359, z: 0.012922454}
---- !u!114 &2144154644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2144154639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50100adf62c60f048aceb704496cd868, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerDamager
-  _damage: 35
---- !u!54 &2144154645
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2144154639}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1001 &3763535648440083848
 PrefabInstance:
   m_ObjectHideFlags: 0

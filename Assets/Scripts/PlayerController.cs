@@ -7,8 +7,7 @@ public class PlayerController : MonoBehaviour
     #region PlayerMovement
     [Header("Settings")]
     [SerializeField] private float _mouseSensitivity = 5f;
-    [SerializeField] private float _walkingSpeed = 6f;
-    [SerializeField] private float _runningSpeed = 10f;
+    [SerializeField] private float _walkingSpeed = 8f;
     [SerializeField] private float _jumpSpeed = 8f;
     [SerializeField] private float _gravity = 30f;
     [SerializeField] private float _lookXLimit = 90f;
@@ -16,7 +15,6 @@ public class PlayerController : MonoBehaviour
 
     [Header("States")]
     [SerializeField] private bool _cantJump;
-    [SerializeField] private bool _cantSprint;
     [SerializeField] private bool _cantMove;
     [SerializeField] private bool _isCrouching;
 
@@ -29,11 +27,16 @@ public class PlayerController : MonoBehaviour
     private Vector3 _moveDirection;
     private float _rotationX;
 
-    private bool isRunning = false;
+    [SerializeField] private float _dashTime = 1.5f;
+    [SerializeField] private float _dashSpeed = 12f;
+    private Vector3 _dashVector;
+    private bool isDashing = false;
 
     //For slopes
     private Vector3 _hitNormal;
     #endregion
+
+    private Vector3 _knockbackVector;
 
     [SerializeField] GameObject _projectilePrefab;
 
@@ -68,11 +71,20 @@ public class PlayerController : MonoBehaviour
     {
         ToggleCrouch();
         MovePlayer();
+        CheckDash();
         UpdateBars();
         CheckAttack();
         RegenHealth();
 
         _damageCooldown -= Time.deltaTime;
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.gameObject.CompareTag("Spike"))
+        {
+            TakeDamage(35, hit.transform);
+        }
     }
 
     public void StopMovement()
@@ -97,7 +109,6 @@ public class PlayerController : MonoBehaviour
     {
         if (_walkingSpeed == _originalSpeed)
         {
-            _cantSprint = true;
             _walkingSpeed = 2f;
         }
     }
@@ -105,7 +116,6 @@ public class PlayerController : MonoBehaviour
     //To return to normal  after being slowed
     public void SetNormalMovement()
     {
-        _cantSprint = false;
         _walkingSpeed = _originalSpeed;
     }
 
@@ -123,18 +133,8 @@ public class PlayerController : MonoBehaviour
         Vector3 forward = _characterController.transform.TransformDirection(Vector3.forward);
         Vector3 right = _characterController.transform.TransformDirection(Vector3.right);
 
-        // Press Left Shift to run
-        isRunning = Input.GetButton("Sprint");
-
-        if (_cantSprint)
-        {
-            isRunning = false;
-        }
-
-
         if (_isCrouching)
         {
-            isRunning = false;
             _characterController.height = 1f;
         }
         else
@@ -142,8 +142,8 @@ public class PlayerController : MonoBehaviour
             _characterController.height = 2f;
         }
 
-        float curSpeedX = !_cantMove ? (isRunning ? _runningSpeed : _walkingSpeed) * Input.GetAxis("Vertical") : 0;
-        float curSpeedY = !_cantMove ? (isRunning ? _runningSpeed : _walkingSpeed) * Input.GetAxis("Horizontal") : 0;
+        float curSpeedX = !_cantMove ? (_walkingSpeed) * Input.GetAxis("Vertical") : 0;
+        float curSpeedY = !_cantMove ? (_walkingSpeed) * Input.GetAxis("Horizontal") : 0;
         float movementDirectionY = _moveDirection.y;
 
         if (_isCrouching)
@@ -175,7 +175,16 @@ public class PlayerController : MonoBehaviour
         }
 
         // Move the controller
-        _characterController.Move(_moveDirection * Time.deltaTime);
+        if (!isDashing)
+        {
+            _characterController.Move((_moveDirection + _knockbackVector) * Time.deltaTime);
+        }
+        else
+        {
+            _characterController.Move((_dashVector) * Time.deltaTime);
+        }
+
+        _knockbackVector = Vector3.Lerp(_knockbackVector, Vector3.zero, 8f * Time.deltaTime);
 
         // Player and Camera rotation
         if (!_cantMove)
@@ -201,14 +210,20 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void ApplyKnockback(Transform hitSource, float knockbackPower = 10f, float knockbackDuration = 0.5f)
+    {
+        Vector3 direction = (transform.position - hitSource.position).normalized;
+        _knockbackVector = new Vector3(direction.x, 4f, direction.z) * knockbackPower;
+    }
 
     private void RegenHealth()
     {
         _regenTimer += Time.deltaTime;
 
-        if (_regenTimer >= _regenSpeed)
+        if (_regenTimer >= _regenSpeed && _currentMana > 0)
         {
             AddHealth(1);
+            AddMana(-1);
 
             _regenTimer = 0f;
         }
@@ -227,23 +242,53 @@ public class PlayerController : MonoBehaviour
 
     private void AddHealth(int i)
     {
-        Mathf.Clamp(_currentHealth += i, 0f, _totalHealth);
+        _currentHealth = (int)Mathf.Clamp(_currentHealth += i, 0f, _totalHealth);
     }
 
     private void AddMana(int i)
     {
-        Mathf.Clamp(_currentMana += i, 0f, _totalMana);
+        _currentMana = (int)Mathf.Clamp(_currentMana += i, 0f, _totalMana);
+
     }
 
-    public void TakeDamage(int i, bool ignoreCooldown = false)
+    public void TakeDamage(int i, Transform hitSource = null, bool ignoreCooldown = false)
     {
         if (_damageCooldown <= 0 || ignoreCooldown == true)
         {
+            if (hitSource != null)
+                ApplyKnockback(hitSource);
+
             AddHealth(-i);
             AddMana(i);
-        }
 
-        _damageCooldown = _damageInvulnerability;
+            _damageCooldown = _damageInvulnerability;
+        }
+    }
+
+    private void CheckDash()
+    {
+        if (Input.GetButtonDown("Sprint") && !isDashing)
+        {
+            if (_currentMana >= 15f)
+            {
+                AddMana(-15);
+                isDashing = true;
+
+                Vector3 forward = transform.forward;
+
+                forward.y = 0;
+
+                _dashVector = forward.normalized * _dashSpeed;
+
+                Invoke("EndDash", _dashTime);
+            }
+        }
+    }
+
+    private void EndDash()
+    {
+        isDashing = false;
+        _dashVector = Vector3.zero;
     }
 
     private void CheckAttack()
