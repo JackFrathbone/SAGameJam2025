@@ -123,7 +123,7 @@ MonoBehaviour:
   _totalHealth: 10
   _detectionRadius: 10
   _damage: 20
-  _attackChargeSpeed: 0.5
+  _attackChargeSpeed: 0.3
   _attackCooldownTime: 0.25
   _attackDistance: 3
 --- !u!1 &6677967972653289732
