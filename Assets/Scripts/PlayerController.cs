@@ -276,7 +276,10 @@ public class PlayerController : MonoBehaviour
             _currentMana -= manaCost;
 
             Vector3 finalPosition = _playerCamera.transform.position + _playerCamera.transform.forward * 1f;
-            Instantiate(_projectilePrefab, finalPosition, _playerCamera.transform.rotation);
+            PlayerProjectile projectile = Instantiate(_projectilePrefab, finalPosition, _playerCamera.transform.rotation).GetComponent<PlayerProjectile>();
+            projectile.SetDamage(manaCost);
+
+            Debug.Log($"Player projectile with {manaCost} damage");
         }
 
     }

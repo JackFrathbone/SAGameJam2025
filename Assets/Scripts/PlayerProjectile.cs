@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class PlayerProjectile : MonoBehaviour
 {
-    [SerializeField] int _damage = 5;
     [SerializeField] float _speed = 10f;
 
+    public void SetDamage(int d) => d = _damage;
+    private int _damage = 5;
     private Rigidbody _rigidbody;
 
 
@@ -12,6 +13,7 @@ public class PlayerProjectile : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
     }
+
     private void FixedUpdate()
     {
         if (_rigidbody.linearVelocity.sqrMagnitude < _speed * _speed)
