@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
+    #region PlayerMovement
     [Header("Settings")]
     [SerializeField] private float _mouseSensitivity = 5f;
     [SerializeField] private float _walkingSpeed = 6f;
@@ -31,7 +33,20 @@ public class PlayerController : MonoBehaviour
 
     //For slopes
     private Vector3 _hitNormal;
+    #endregion
 
+    [SerializeField] int _totalHealth = 100;
+    [SerializeField] int _totalMana = 100;
+    [SerializeField, Tooltip("in seconds")] float _regenSpeed = 1f;
+
+    private int _currentHealth = 100;
+    private int _currentMana = 0;
+
+    private float _regenTimer;
+    private float _chargeTime;
+
+    [SerializeField] Image _healthBar;
+    [SerializeField] Image _manaBar;
 
     private void Start()
     {
@@ -40,24 +55,35 @@ public class PlayerController : MonoBehaviour
         _playerCamera = Camera.main;
 
         _originalSpeed = _walkingSpeed;
+
+        AllowMovement();
     }
 
     private void Update()
     {
         ToggleCrouch();
         MovePlayer();
+        UpdateBars();
+        CheckAttack();
+        RegenHealth();
     }
 
     public void StopMovement()
     {
         _cantJump = true;
         _cantMove = true;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void AllowMovement()
     {
         _cantJump = false;
         _cantMove = false;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void SetSlowMovement()
@@ -78,7 +104,7 @@ public class PlayerController : MonoBehaviour
 
     private void ToggleCrouch()
     {
-        //Press left ctrl to crouch 
+        //Press left ctrl to crouch
         if (Input.GetButtonDown("Crouch"))
         {
             _isCrouching = !_isCrouching;
@@ -166,5 +192,66 @@ public class PlayerController : MonoBehaviour
         {
             return false;
         }
+    }
+
+
+    private void RegenHealth()
+    {
+        _regenTimer += Time.deltaTime;
+
+        if (_regenTimer >= 1f)
+        {
+            _currentHealth += 1;
+
+            _regenTimer = 0f;
+        }
+    }
+
+    private void UpdateBars()
+    {
+        _healthBar.fillAmount = GetPercentage(_currentHealth, _totalHealth) / 100;
+        _manaBar.fillAmount = GetPercentage(_currentMana, _totalMana) / 100;
+    }
+
+    private float GetPercentage(int current, int total)
+    {
+        return total > 0 ? ((float)current / (float)total) * 100f : 0f;
+    }
+
+    public void TakeDamage(int i)
+    {
+        _currentHealth -= i;
+        _currentMana += i;
+    }
+
+    private void CheckAttack()
+    {
+        if (Input.GetButton("Fire1"))
+        {
+            _chargeTime += Time.deltaTime;
+        }
+        else
+        {
+
+            if (_chargeTime > 0)
+                DoAttack();
+
+            _chargeTime = 0;
+        }
+
+        if (Input.GetButtonDown("Fire2"))
+        {
+            TakeDamage(5);
+        }
+    }
+
+    private void DoAttack()
+    {
+        int manaCost = (int)Mathf.Clamp((_chargeTime * 10), 5f, 25f);
+
+        Debug.Log($"Attack with charge {_chargeTime} and mana cost of {manaCost}");
+
+        if (_currentMana >= manaCost)
+            _currentMana -= manaCost;
     }
 }
