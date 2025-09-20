@@ -1,5 +1,6 @@
 using DG.Tweening;
 using RenderHeads.Services;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -63,6 +64,7 @@ public class PlayerController : MonoBehaviour
     [Header("Audio")]
     [SerializeField] private AudioClip _syphonClip;
     [SerializeField] private AudioClip _finishSyphon;
+    [SerializeField] private List<AudioClip> _dashClips;
 
     private LazyService<GameManager> _gameManager;
 
@@ -341,6 +343,8 @@ public class PlayerController : MonoBehaviour
                 forward.y = 0;
 
                 _dashVector = forward.normalized * _dashSpeed;
+
+                _gameManager.Value.PlayAudioClip(_dashClips[Random.Range(0, _dashClips.Count)]);
 
                 Invoke("EndDash", _dashTime);
             }
