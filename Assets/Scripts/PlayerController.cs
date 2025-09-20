@@ -199,7 +199,7 @@ public class PlayerController : MonoBehaviour
     {
         _regenTimer += Time.deltaTime;
 
-        if (_regenTimer >= 1f)
+        if (_regenTimer >= _regenSpeed)
         {
             _currentHealth += 1;
 
