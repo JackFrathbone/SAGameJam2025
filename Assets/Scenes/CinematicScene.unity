@@ -3879,6 +3879,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d5763e9d1458344e96f51c5332c3743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CinematicSequencer
+  npc1: {fileID: 199530777}
+  npc2: {fileID: 1434147534}
   gameObjects:
   - {fileID: 962609618}
   - {fileID: 1974144996}
