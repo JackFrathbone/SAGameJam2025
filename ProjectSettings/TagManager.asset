@@ -9,6 +9,7 @@ TagManager:
   - SpeakerPrompt
   - TutorialPrompt
   - Door
+  - Switch
   layers:
   - Default
   - TransparentFX

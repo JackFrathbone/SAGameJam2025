@@ -53,6 +53,13 @@ public class PlayerProjectile : MonoBehaviour
                 door.TryBreak();
             }
         }
+        else if (collision.collider.CompareTag("Switch"))
+        {
+            if (collision.collider.TryGetComponent<DoorSwitch>(out DoorSwitch doorSwitch))
+            {
+                doorSwitch.HitSwitch();
+            }
+        }
 
         _gameManager.Value.PlayAudioClip(_hitClip);
         Destroy(gameObject);
