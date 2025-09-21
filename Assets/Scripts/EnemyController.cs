@@ -134,11 +134,24 @@ public class EnemyController : MonoBehaviour
 
         _currentHealth -= i;
 
+        _attacking = true;
+        _agent.enabled = false;
+
         if (_currentHealth <= 0)
         {
             _gameManager.Value.PlayAudioClip(_gibSounds[Random.Range(0, _gibSounds.Count)], 0.85f);
             Kill();
+
+            return;
         }
+
+        Invoke("EndTakeDamage", 0.85f);
+    }
+
+    private void EndTakeDamage()
+    {
+        _attacking = false;
+        _agent.enabled = true;
     }
 
     private void DoAttack()
