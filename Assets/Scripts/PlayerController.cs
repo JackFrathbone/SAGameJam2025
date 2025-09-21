@@ -45,7 +45,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] int _totalHealth = 100;
     [SerializeField] int _totalMana = 100;
-    [SerializeField, Tooltip("in seconds")] float _regenSpeed = 1f;
+    [SerializeField, Tooltip("How much health for each mana")] int _regenRatio = 2;
+    [SerializeField] float _regenSpeed = 1.5f;
     [SerializeField] float _damageInvulnerability = 1.5f;
 
     private int _currentHealth = 100;
@@ -53,8 +54,8 @@ public class PlayerController : MonoBehaviour
 
     private bool _updatingBars;
 
-    private float _regenTimer;
     private float _chargeTime;
+    private float _regentTimer;
 
     private float _damageCooldown;
 
@@ -62,7 +63,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Image _manaBar;
 
     [Header("Audio")]
-    [SerializeField] private AudioClip _syphonClip;
+    private AudioSource _audioSource;
     [SerializeField] private AudioClip _finishSyphon;
     [SerializeField] private List<AudioClip> _dashClips;
     [SerializeField] private List<AudioClip> _hurtClips;
@@ -77,6 +78,8 @@ public class PlayerController : MonoBehaviour
         _characterController = GetComponent<CharacterController>();
         _animator = GetComponentInChildren<Animator>();
 
+        _audioSource = GetComponent<AudioSource>();
+
         _playerCamera = Camera.main;
 
         _originalSpeed = _walkingSpeed;
@@ -90,9 +93,8 @@ public class PlayerController : MonoBehaviour
         ToggleCrouch();
         MovePlayer();
         CheckDash();
-        //UpdateBars();
         CheckAttack();
-        RegenHealth();
+        CheckRegenHealth();
 
         _damageCooldown -= Time.deltaTime;
     }
@@ -240,19 +242,35 @@ public class PlayerController : MonoBehaviour
         _knockbackVector = new Vector3(direction.x, 4f, direction.z) * knockbackPower;
     }
 
-    private void RegenHealth()
+    private void CheckRegenHealth()
     {
         if (_updatingBars)
             return;
 
-        _regenTimer += Time.deltaTime;
-
-        if (_regenTimer >= _regenSpeed && _currentMana > 0)
+        if (Input.GetButtonDown("Fire2"))
         {
-            AddHealth(1);
-            AddMana(-1);
+            _audioSource.pitch = 0.90f;
+            _audioSource.Play();
+        }
 
-            _regenTimer = 0f;
+        if (Input.GetButton("Fire2"))
+        {
+            _regentTimer += _regenSpeed * Time.deltaTime;
+
+            if (_regentTimer >= 1f && _currentMana > 1f)
+            {
+                _regentTimer = 0f;
+
+                AddMana(-1);
+                AddHealth(_regenRatio);
+            }
+        }
+
+
+
+        if (Input.GetButtonUp("Fire2"))
+        {
+            _audioSource.Stop();
         }
     }
 
@@ -281,6 +299,12 @@ public class PlayerController : MonoBehaviour
         .OnComplete(() =>
         {
             _updatingBars = false;
+        })
+        .OnKill(() =>
+        {
+            UpdateBars();
+
+            _updatingBars = false;
         });
     }
 
@@ -288,7 +312,8 @@ public class PlayerController : MonoBehaviour
     {
         if (i > 0)
         {
-            _gameManager.Value.PlayAudioClip(_syphonClip, 0.15f, false, 0f, 0f, true);
+            _audioSource.pitch = 1f;
+            _audioSource.Play();
         }
 
         _currentMana = (int)Mathf.Clamp(_currentMana += i, 0f, _totalMana);
@@ -304,6 +329,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (i > 0)
                 {
+                    _audioSource.Stop();
                     _gameManager.Value.PlayAudioClip(_finishSyphon, 0.2f);
                 }
 
@@ -313,8 +339,11 @@ public class PlayerController : MonoBehaviour
             {
                 if (i > 0)
                 {
+                    _audioSource.Stop();
                     _gameManager.Value.PlayAudioClip(_finishSyphon, 0.5f);
                 }
+
+                UpdateBars();
 
                 _updatingBars = false;
             });
@@ -393,7 +422,7 @@ public class PlayerController : MonoBehaviour
 
         if (_currentMana >= manaCost)
         {
-            _currentMana -= manaCost;
+            AddMana(-manaCost);
 
             Vector3 finalPosition = _playerCamera.transform.position + _playerCamera.transform.forward * 1f;
             PlayerProjectile projectile = Instantiate(_projectilePrefab, finalPosition, _playerCamera.transform.rotation).GetComponent<PlayerProjectile>();
