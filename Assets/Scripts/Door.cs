@@ -5,6 +5,7 @@ public class Door : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] List<EnemyController> _linkedEnemies = new();
+    [SerializeField] List<DoorSwitch> _linkedSwitches = new();
 
     [Header("References")]
     [SerializeField] GameObject _doorModel;
@@ -16,8 +17,9 @@ public class Door : MonoBehaviour
     private void FixedUpdate()
     {
         _linkedEnemies.RemoveAll(item => item == null);
+        _linkedSwitches.RemoveAll(item => item == null);
 
-        if (_linkedEnemies.Count == 0)
+        if (_linkedEnemies.Count == 0 && _linkedSwitches.Count == 0)
         {
             _doorModel.SetActive(true);
             _doorModelLocked.SetActive(false);
