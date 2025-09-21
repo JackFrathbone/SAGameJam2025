@@ -9,7 +9,7 @@ public class EnemyProjectile : MonoBehaviour
 
     [SerializeField] List<AudioClip> _launchClips;
     [SerializeField] AudioClip _hitClip;
-    public void SetDamage(int d) => d = _damage;
+    public void SetDamage(int d) => _damage = d;
     private int _damage = 5;
     private Rigidbody _rigidbody;
 
@@ -20,8 +20,6 @@ public class EnemyProjectile : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
 
         Destroy(gameObject ,5f);
-
-        //_gameManager.Value.PlayAudioClip(_launchClips[Random.Range(0, _launchClips.Count)], 0.25f);
     }
 
     private void FixedUpdate()
