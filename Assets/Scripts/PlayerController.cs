@@ -90,6 +90,8 @@ public class PlayerController : MonoBehaviour
 
         _bloodBall.SetActive(false);
 
+        RefreshMouseSensitivity();
+
         AllowMovement();
         UpdateBars();
     }
@@ -462,5 +464,11 @@ public class PlayerController : MonoBehaviour
             projectile.SetDamage(manaCost);
         }
 
+    }
+
+
+    public void RefreshMouseSensitivity()
+    {
+        _mouseSensitivity = PlayerPrefs.GetFloat("MouseSensitivity", 4);
     }
 }

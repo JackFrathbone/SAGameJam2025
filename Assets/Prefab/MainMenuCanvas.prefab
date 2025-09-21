@@ -84,13 +84,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 2770542428650399285}
   m_HandleRect: {fileID: 3773666199184222103}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.001
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0.234
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4967228453507894418}
+        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
+        m_MethodName: ChangeMusicVolume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &127866252987925821
 GameObject:
   m_ObjectHideFlags: 0
@@ -2043,13 +2055,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 6544430206382064762}
   m_HandleRect: {fileID: 5991601787662174178}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: 1
+  m_MaxValue: 10
   m_WholeNumbers: 0
-  m_Value: 0.234
+  m_Value: 4
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4967228453507894418}
+        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
+        m_MethodName: ChangeMouseSensitivity
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2812685728335614542
 GameObject:
   m_ObjectHideFlags: 0
@@ -2137,6 +2161,7 @@ GameObject:
   - component: {fileID: 1722044876991381179}
   - component: {fileID: 544068818695858104}
   - component: {fileID: 545875191934291767}
+  - component: {fileID: 4967228453507894418}
   m_Layer: 5
   m_Name: MainMenuCanvas
   m_TagString: Untagged
@@ -2232,6 +2257,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4967228453507894418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2848427574936532480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b0fb2299a9e1546994081f2f6afcfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SettingsMenu
+  musicSlider: {fileID: 1446485857626377927}
+  sfxSlider: {fileID: 6685680016398255447}
+  mouseSensitivitySlider: {fileID: 8853085299219313003}
+  audioMixer: {fileID: 24100000, guid: f9c908c28af16674e90f97fb2b235fb3, type: 2}
 --- !u!1 &3004045969122338259
 GameObject:
   m_ObjectHideFlags: 0
@@ -2922,13 +2963,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 3474756109855685529}
   m_HandleRect: {fileID: 2075697499508261592}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.001
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0.234
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4967228453507894418}
+        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
+        m_MethodName: ChangeSFXVolume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3992218486897497306
 GameObject:
   m_ObjectHideFlags: 0
@@ -6451,7 +6504,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -3.7547607, y: 0}
+  m_AnchoredPosition: {x: -3.7547913, y: 0}
   m_SizeDelta: {x: 7.5094, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5605098847025445579
