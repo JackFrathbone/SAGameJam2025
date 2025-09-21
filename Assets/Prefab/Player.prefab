@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b342d8ce5c2fd48b8fa3147d48d1d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Animation.Rigging::UnityEngine.Animations.Rigging.Rig
-  m_Weight: 1
+  m_Weight: 0
   m_Effectors:
   - m_Transform: {fileID: 2253216955104699329}
     m_Style:
@@ -341,8 +341,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3495136750974400875}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.6358687, y: 0.26576248, z: 0.1980233, w: 0.69701374}
-  m_LocalPosition: {x: 0.492, y: 1.781, z: -0.582}
+  m_LocalRotation: {x: 0.47086832, y: -0.47086796, z: 0.5275259, w: 0.5275252}
+  m_LocalPosition: {x: -0.080350876, y: 1.5395854, z: -1.4885606}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -375,8 +375,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4401235138239467756}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.85, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.837, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -510,8 +510,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6215811485827932088}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.64337003, y: 0.23238397, z: 0.19398342, w: -0.70316654}
-  m_LocalPosition: {x: 0.912, y: 1.7629999, z: -0.60999995}
+  m_LocalRotation: {x: -0.47515157, y: -0.4751514, z: 0.52367115, w: -0.52367043}
+  m_LocalPosition: {x: 1.5967563, y: 1.5395848, z: -1.4882994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -675,7 +675,7 @@ Animator:
   m_GameObject: {fileID: 5296502396335732462}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5993de37084426b48b9c700a821d53af, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

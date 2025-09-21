@@ -66,11 +66,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioClip _finishSyphon;
     [SerializeField] private List<AudioClip> _dashClips;
 
+    [Header("Animation")]
+    private Animator _animator;
+
     private LazyService<GameManager> _gameManager;
 
     private void Start()
     {
         _characterController = GetComponent<CharacterController>();
+        _animator = GetComponentInChildren<Animator>();
 
         _playerCamera = Camera.main;
 
@@ -361,6 +365,8 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetButton("Fire1"))
         {
+            _animator.SetBool("Charging", true);
+
             _chargeTime += Time.deltaTime;
         }
         else
@@ -369,13 +375,9 @@ public class PlayerController : MonoBehaviour
             if (_chargeTime > 0)
                 DoAttack();
 
+            _animator.SetBool("Charging", false);
             _chargeTime = 0;
         }
-
-        /* if (Input.GetButtonDown("Fire2"))
-         {
-             TakeDamage(5, true);
-         }*/
     }
 
     private void DoAttack()
@@ -385,6 +387,8 @@ public class PlayerController : MonoBehaviour
         if (_currentMana >= manaCost)
         {
             _currentMana -= manaCost;
+
+            _animator.SetTrigger("Attack");
 
             Vector3 finalPosition = _playerCamera.transform.position + _playerCamera.transform.forward * 1f;
             PlayerProjectile projectile = Instantiate(_projectilePrefab, finalPosition, _playerCamera.transform.rotation).GetComponent<PlayerProjectile>();
