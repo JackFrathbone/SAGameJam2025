@@ -52,10 +52,12 @@ public class PlayerController : MonoBehaviour
     private int _currentHealth = 100;
     private int _currentMana = 0;
 
-    private bool _updatingBars;
+    private bool _updatingHealthBar;
+    private bool _updatingManaBar;
+    private bool _regeningHealth;
 
     private float _chargeTime;
-    private float _regentTimer;
+    private float _regenTimer;
 
     private float _damageCooldown;
 
@@ -63,7 +65,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Image _manaBar;
 
     [Header("Audio")]
-    private AudioSource _audioSource;
+    [SerializeField] private AudioSource _audioSourceHealthBar;
+    [SerializeField] private AudioSource _audioSourceManaBar;
+
     [SerializeField] private AudioClip _finishSyphon;
     [SerializeField] private List<AudioClip> _dashClips;
     [SerializeField] private List<AudioClip> _hurtClips;
@@ -77,8 +81,6 @@ public class PlayerController : MonoBehaviour
     {
         _characterController = GetComponent<CharacterController>();
         _animator = GetComponentInChildren<Animator>();
-
-        _audioSource = GetComponent<AudioSource>();
 
         _playerCamera = Camera.main;
 
@@ -95,6 +97,7 @@ public class PlayerController : MonoBehaviour
         CheckDash();
         CheckAttack();
         CheckRegenHealth();
+        CheckBarAudio();
 
         _damageCooldown -= Time.deltaTime;
     }
@@ -244,33 +247,47 @@ public class PlayerController : MonoBehaviour
 
     private void CheckRegenHealth()
     {
-        if (_updatingBars)
+        if (_updatingManaBar)
             return;
-
-        if (Input.GetButtonDown("Fire2"))
-        {
-            _audioSource.pitch = 0.90f;
-            _audioSource.Play();
-        }
 
         if (Input.GetButton("Fire2"))
         {
-            _regentTimer += _regenSpeed * Time.deltaTime;
+            _regenTimer += _regenSpeed * Time.deltaTime;
 
-            if (_regentTimer >= 1f && _currentMana > 1f)
+            if (_regenTimer >= 1f && _currentMana > 1f && _currentHealth < _totalHealth)
             {
-                _regentTimer = 0f;
+                _regeningHealth = true;
+
+                _regenTimer = 0f;
 
                 AddMana(-1);
                 AddHealth(_regenRatio);
             }
         }
-
-
-
-        if (Input.GetButtonUp("Fire2"))
+        else
         {
-            _audioSource.Stop();
+            _regeningHealth = false;
+        }
+    }
+
+    private void CheckBarAudio()
+    {
+        if (_updatingHealthBar && !_audioSourceHealthBar.isPlaying)
+        {
+            _audioSourceHealthBar.Play();
+        }
+        else if (!_updatingHealthBar && !_regeningHealth)
+        {
+            _audioSourceHealthBar.Stop();
+        }
+
+        if (_updatingManaBar && !_audioSourceManaBar.isPlaying)
+        {
+            _audioSourceManaBar.Play();
+        }
+        else if (!_updatingManaBar)
+        {
+            _audioSourceManaBar.Stop();
         }
     }
 
@@ -291,36 +308,28 @@ public class PlayerController : MonoBehaviour
 
         _healthBar.DOKill();
 
-        _updatingBars = true;
+        _updatingHealthBar = true;
 
         _healthBar.DOFillAmount(GetPercentage(_currentHealth, _totalHealth) / 100, 1f)
         .SetEase(Ease.OutBounce)
         .SetSpeedBased(true)
         .OnComplete(() =>
         {
-            _updatingBars = false;
+            _updatingHealthBar = false;
         })
         .OnKill(() =>
         {
             UpdateBars();
-
-            _updatingBars = false;
         });
     }
 
     private void AddMana(int i)
     {
-        if (i > 0)
-        {
-            _audioSource.pitch = 1f;
-            _audioSource.Play();
-        }
-
         _currentMana = (int)Mathf.Clamp(_currentMana += i, 0f, _totalMana);
 
         _manaBar.DOKill();
 
-        _updatingBars = true;
+        _updatingManaBar = true;
 
         _manaBar.DOFillAmount(GetPercentage(_currentMana, _totalMana) / 100, 1f)
             .SetSpeedBased(true)
@@ -329,23 +338,19 @@ public class PlayerController : MonoBehaviour
             {
                 if (i > 0)
                 {
-                    _audioSource.Stop();
                     _gameManager.Value.PlayAudioClip(_finishSyphon, 0.2f);
                 }
 
-                _updatingBars = false;
+                _updatingManaBar = false;
             })
             .OnKill(() =>
             {
                 if (i > 0)
                 {
-                    _audioSource.Stop();
                     _gameManager.Value.PlayAudioClip(_finishSyphon, 0.5f);
                 }
 
                 UpdateBars();
-
-                _updatingBars = false;
             });
     }
 
