@@ -35,7 +35,7 @@ public class EnemyController : MonoBehaviour
 
         _agent = GetComponent<NavMeshAgent>();
         _playerController = FindAnyObjectByType<PlayerController>();
-        _mainMat = GetComponentInChildren<MeshRenderer>().material;
+        _mainMat = GetComponentInChildren<SkinnedMeshRenderer>().material;
 
         _agent.stoppingDistance = _attackDistance;
 
