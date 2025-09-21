@@ -158,7 +158,7 @@ MonoBehaviour:
   _detectionRadius: 20
   _damage: 20
   _attackChargeSpeed: 0.3
-  _attackCooldownTime: 0.25
+  _attackCooldownTime: 1
   _attackDistance: 3
   _rotationSpeed: 5
   _rangedAttack: 0

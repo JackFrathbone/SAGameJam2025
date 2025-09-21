@@ -62,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6295500658242318761, guid: 35c680facd4b44c49b0cfe5506e65090, type: 3}
       propertyPath: _damage
-      value: 45
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6295500658242318761, guid: 35c680facd4b44c49b0cfe5506e65090, type: 3}
       propertyPath: _rangedAttack
@@ -70,7 +70,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6295500658242318761, guid: 35c680facd4b44c49b0cfe5506e65090, type: 3}
       propertyPath: _attackDistance
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6295500658242318761, guid: 35c680facd4b44c49b0cfe5506e65090, type: 3}
       propertyPath: _detectionRadius
