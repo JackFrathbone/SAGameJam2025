@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
   _totalHealth: 10
-  _detectionRadius: 10
+  _detectionRadius: 20
   _damage: 20
   _attackChargeSpeed: 0.3
   _attackCooldownTime: 0.25
@@ -323,10 +323,40 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7036213049465896255, guid: 7d3e50c3f90beeb4fa9e8ae6978ccbb2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6474456529713942277}
   m_SourcePrefab: {fileID: 100100000, guid: 7d3e50c3f90beeb4fa9e8ae6978ccbb2, type: 3}
 --- !u!4 &4136690615089234164 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7d3e50c3f90beeb4fa9e8ae6978ccbb2, type: 3}
   m_PrefabInstance: {fileID: 4531398923397064479}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6865567425824987680 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7036213049465896255, guid: 7d3e50c3f90beeb4fa9e8ae6978ccbb2, type: 3}
+  m_PrefabInstance: {fileID: 4531398923397064479}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &6474456529713942277
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6865567425824987680}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bfbfff4f912e09c4fb3f619e6d1ed252, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

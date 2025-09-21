@@ -29,6 +29,9 @@ public class EnemyController : MonoBehaviour
 
     private float _attackCooldown;
 
+    [Header("Animations")]
+    private Animator _animator;
+
     private void Start()
     {
         _currentHealth = _totalHealth;
@@ -36,6 +39,8 @@ public class EnemyController : MonoBehaviour
         _agent = GetComponent<NavMeshAgent>();
         _playerController = FindAnyObjectByType<PlayerController>();
         _mainMat = GetComponentInChildren<SkinnedMeshRenderer>().material;
+
+        _animator = GetComponentInChildren<Animator>();
 
         _agent.stoppingDistance = _attackDistance;
 
@@ -68,6 +73,15 @@ public class EnemyController : MonoBehaviour
                 }
             }
         }
+
+        if (_agent.velocity.magnitude > 0.25f)
+        {
+            _animator.SetBool("Running", true);
+        }
+        else
+        {
+            _animator.SetBool("Running", false);
+        }
     }
 
     public void CheckForPlayer()
@@ -99,6 +113,10 @@ public class EnemyController : MonoBehaviour
 
     public void TakeDamage(int i)
     {
+        _animator.SetTrigger("Hurt");
+
+        _alerted = true;
+
         _currentHealth -= i;
 
         if (_currentHealth <= 0)
@@ -112,6 +130,9 @@ public class EnemyController : MonoBehaviour
         _attacking = true;
         _agent.enabled = false;
 
+        if(!_rangedAttack)
+            _animator.SetTrigger("Attack");
+
         //_mainMat.DOKill();
         _mainMat.DOColor(Color.red, _attackChargeSpeed).SetEase(Ease.Flash).SetId(this).OnComplete(EndAttack);
     }
@@ -119,6 +140,9 @@ public class EnemyController : MonoBehaviour
     private void EndAttack()
     {
         _mainMat.DORewind();
+
+        if (_rangedAttack)
+            _animator.SetTrigger("Attack");
 
         _attacking = false;
         _agent.enabled = true;
