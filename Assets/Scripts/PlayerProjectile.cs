@@ -39,7 +39,6 @@ public class PlayerProjectile : MonoBehaviour
         if (collision.collider.CompareTag("Player"))
             return;
 
-
         if (collision.collider.CompareTag("Enemy"))
         {
             if (collision.collider.TryGetComponent<EnemyController>(out EnemyController enemy))
@@ -47,7 +46,13 @@ public class PlayerProjectile : MonoBehaviour
                 enemy.TakeDamage(_damage);
             }
         }
-
+        else if (collision.collider.CompareTag("Door"))
+        {
+            if (collision.collider.TryGetComponent<Door>(out Door door))
+            {
+                door.TryBreak();
+            }
+        }
 
         _gameManager.Value.PlayAudioClip(_hitClip);
         Destroy(gameObject);
