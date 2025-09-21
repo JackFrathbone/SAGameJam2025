@@ -67,6 +67,7 @@ Transform:
   - {fileID: 8715885277609424373}
   - {fileID: 788222642501707328}
   - {fileID: 4136690615089234164}
+  - {fileID: 8766727139131941103}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &8897237067999180735
@@ -163,6 +164,39 @@ MonoBehaviour:
   _rangedAttack: 0
   _projectileParent: {fileID: 788222642501707328}
   _projectilePrefab: {fileID: 0}
+  _gibParent: {fileID: 8766727139131941103}
+  _gibPrefab: {fileID: 1415820077066665243, guid: 267f35114b4923548aea2263c3c5bbc7, type: 3}
+--- !u!1 &3709089180510354297
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8766727139131941103}
+  m_Layer: 3
+  m_Name: GibSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8766727139131941103
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3709089180510354297}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3191536081330723596}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6677967972653289732
 GameObject:
   m_ObjectHideFlags: 0

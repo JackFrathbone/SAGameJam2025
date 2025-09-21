@@ -20,6 +20,8 @@ public class PlayerProjectile : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
 
+        Destroy(gameObject, 5f);
+
         _gameManager.Value.PlayAudioClip(_launchClips[Random.Range(0,_launchClips.Count)]);
     }
 

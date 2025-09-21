@@ -31,6 +31,8 @@ public class EnemyController : MonoBehaviour
 
     [Header("Animations")]
     private Animator _animator;
+    [SerializeField] private Transform _gibParent;
+    [SerializeField] private GameObject _gibPrefab;
 
     private void Start()
     {
@@ -130,7 +132,7 @@ public class EnemyController : MonoBehaviour
         _attacking = true;
         _agent.enabled = false;
 
-        if(!_rangedAttack)
+        if (!_rangedAttack)
             _animator.SetTrigger("Attack");
 
         //_mainMat.DOKill();
@@ -165,6 +167,8 @@ public class EnemyController : MonoBehaviour
 
     private void Kill()
     {
+        Destroy(Instantiate(_gibPrefab, _gibParent.position, _gibParent.rotation), 10f);
+
         Destroy(gameObject);
     }
 }
