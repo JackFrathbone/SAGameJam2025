@@ -39,7 +39,7 @@ public class EnemyController : MonoBehaviour
 
         _agent.stoppingDistance = _attackDistance;
 
-        InvokeRepeating("CheckForPlayer", 1f, 1f);
+        InvokeRepeating("CheckForPlayer", 1f, 0.5f);
     }
 
     private void OnDisable()
@@ -75,19 +75,12 @@ public class EnemyController : MonoBehaviour
         if (_alerted)
             return;
 
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, _detectionRadius);
-        foreach (var hitCollider in hitColliders)
+        Vector3 rayDirection = (_playerController.transform.position - _projectileParent.transform.position).normalized;
+        if (Physics.Raycast(_projectileParent.transform.position, rayDirection, out var hit, _detectionRadius))
         {
-            if (hitCollider.CompareTag("Player"))
+            if (hit.collider.CompareTag("Player"))
             {
                 _alerted = true;
-            }
-            else if (hitCollider.CompareTag("Enemy") && hitCollider.gameObject != gameObject)
-            {
-                if (hitCollider.TryGetComponent<EnemyController>(out EnemyController enemy))
-                {
-                    _alerted |= enemy.GetAlertedStatus();
-                }
             }
         }
     }
