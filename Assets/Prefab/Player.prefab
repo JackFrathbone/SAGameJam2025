@@ -73,22 +73,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d83f92805a773574484d6fa0f97f76c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  _mouseSensitivity: 5
-  _walkingSpeed: 6
-  _jumpSpeed: 8
+  _mouseSensitivity: 4
+  _walkingSpeed: 8
+  _jumpSpeed: 9
   _gravity: 30
-  _lookXLimit: 90
+  _lookXLimit: 80
   _slopeSpeed: 5
   _cantJump: 0
   _cantMove: 0
   _isCrouching: 0
-  _dashTime: 1.5
-  _dashSpeed: 12
+  _dashTime: 0.5
+  _dashSpeed: 15
   _projectilePrefab: {fileID: 9153542789265613806, guid: 94d27ebf9c275c344a709b4c1b45f3a2, type: 3}
   _totalHealth: 100
   _totalMana: 100
   _regenSpeed: 1
-  _damageInvulnerability: 1.5
+  _damageInvulnerability: 0.5
   _healthBar: {fileID: 3920852672921783217}
   _manaBar: {fileID: 9104853909529059693}
   _syphonClip: {fileID: 8300000, guid: 539ea9e6420e2b74d8f22ddbacf0e359, type: 3}

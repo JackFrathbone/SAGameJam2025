@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd2bdb2130c771a42953331cbaf3de38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerProjectile
-  _speed: 100
+  _speed: 150
   _launchClips:
   - {fileID: 8300000, guid: dc6540235e5ace143a39f30a4bdd67bb, type: 3}
   - {fileID: 8300000, guid: a9ed79e4824e7b74792207ff2e5d4622, type: 3}

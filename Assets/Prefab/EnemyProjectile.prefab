@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 428d6935e41f09e428002f885023e098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyProjectile
-  _speed: 10
+  _speed: 50
   _launchClips:
   - {fileID: 8300000, guid: dc6540235e5ace143a39f30a4bdd67bb, type: 3}
   - {fileID: 8300000, guid: a9ed79e4824e7b74792207ff2e5d4622, type: 3}

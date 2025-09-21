@@ -2474,7 +2474,7 @@ PrefabInstance:
     - target: {fileID: 8639646998028647083, guid: a4b97d4da7c2d1946b4ecb95058a4ef8, type: 3}
       propertyPath: m_NavMeshData
       value: 
-      objectReference: {fileID: 23800000, guid: 1a48aafa7a5a3114a8954240fdf7d9bd, type: 2}
+      objectReference: {fileID: 23800000, guid: 2fea0872403440747906b1987c1bf6e7, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2492,13 +2492,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: FloorSpikes01
       objectReference: {fileID: 0}
+    - target: {fileID: 476060239760481938, guid: da1a28ae90adb5042889d9deebf09407, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 995470239337284648, guid: da1a28ae90adb5042889d9deebf09407, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.1376295
       objectReference: {fileID: 0}
     - target: {fileID: 995470239337284648, guid: da1a28ae90adb5042889d9deebf09407, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.019
       objectReference: {fileID: 0}
     - target: {fileID: 995470239337284648, guid: da1a28ae90adb5042889d9deebf09407, type: 3}
       propertyPath: m_LocalPosition.z
