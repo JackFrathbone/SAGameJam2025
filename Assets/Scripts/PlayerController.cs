@@ -66,11 +66,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioClip _finishSyphon;
     [SerializeField] private List<AudioClip> _dashClips;
 
+    [Header("Animation")]
+    private Animator _animator;
+
     private LazyService<GameManager> _gameManager;
 
     private void Start()
     {
         _characterController = GetComponent<CharacterController>();
+        _animator = GetComponentInChildren<Animator>();
 
         _playerCamera = Camera.main;
 
@@ -361,21 +365,23 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetButton("Fire1"))
         {
+            _animator.SetBool("Charging", true);
+
             _chargeTime += Time.deltaTime;
         }
         else
         {
 
             if (_chargeTime > 0)
-                DoAttack();
+            {
+                _animator.SetTrigger("Attack");
+                Invoke("DoAttack", 0.15f);
+            }
+     
 
+            _animator.SetBool("Charging", false);
             _chargeTime = 0;
         }
-
-        /* if (Input.GetButtonDown("Fire2"))
-         {
-             TakeDamage(5, true);
-         }*/
     }
 
     private void DoAttack()
