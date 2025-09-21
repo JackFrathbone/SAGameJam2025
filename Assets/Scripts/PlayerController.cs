@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
     private bool _regeningHealth;
 
     private float _chargeTime;
+    private int _chargeDamage;
     private float _regenTimer;
 
     private float _damageCooldown;
@@ -74,6 +75,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Animation")]
     private Animator _animator;
+    [SerializeField] GameObject _bloodBall;
 
     private LazyService<GameManager> _gameManager;
 
@@ -85,6 +87,8 @@ public class PlayerController : MonoBehaviour
         _playerCamera = Camera.main;
 
         _originalSpeed = _walkingSpeed;
+
+        _bloodBall.SetActive(false);
 
         AllowMovement();
         UpdateBars();
@@ -372,7 +376,7 @@ public class PlayerController : MonoBehaviour
 
     private void CheckDash()
     {
-        if (Input.GetButtonDown("Sprint") && !isDashing)
+        if (Input.GetButtonDown("Sprint") && !isDashing && _chargeTime <= 0)
         {
             if (_currentMana >= 15f)
             {
@@ -400,11 +404,30 @@ public class PlayerController : MonoBehaviour
 
     private void CheckAttack()
     {
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButton("Fire1") && _currentMana >= 5)
         {
             _animator.SetBool("Charging", true);
 
+            _bloodBall.SetActive(true);
+
             _chargeTime += Time.deltaTime;
+
+            _chargeDamage = 5;
+
+            if (_chargeTime >= 1f && _chargeTime < 3f && _currentMana > 10)
+            {
+                _chargeDamage = 10;
+
+                Vector3 mediumScale = new Vector3(0.13f, 0.13f, 0.13f);
+                _bloodBall.transform.DOScale(mediumScale, 0.5f).SetEase(Ease.OutBounce);
+            }
+            else if (_chargeTime >= 3f && _currentMana > 15)
+            {
+                _chargeDamage = 15;
+
+                Vector3 largeScale = new Vector3(0.2f, 0.2f, 0.2f);
+                _bloodBall.transform.DOScale(largeScale, 0.5f).SetEase(Ease.OutBounce);
+            }
         }
         else
         {
@@ -415,7 +438,6 @@ public class PlayerController : MonoBehaviour
                 Invoke("DoAttack", 0.15f);
             }
 
-
             _animator.SetBool("Charging", false);
             _chargeTime = 0;
         }
@@ -423,17 +445,21 @@ public class PlayerController : MonoBehaviour
 
     private void DoAttack()
     {
-        int manaCost = (int)Mathf.Clamp((_chargeTime * 10), 5f, 25f);
+        int manaCost = _chargeDamage;
+
+        _chargeDamage = 0;
 
         if (_currentMana >= manaCost)
         {
             AddMana(-manaCost);
 
+            _bloodBall.transform.DOKill();
+            _bloodBall.transform.localScale = new Vector3(0.08f, 0.08f, 0.08f);
+            _bloodBall.SetActive(false);
+
             Vector3 finalPosition = _playerCamera.transform.position + _playerCamera.transform.forward * 1f;
             PlayerProjectile projectile = Instantiate(_projectilePrefab, finalPosition, _playerCamera.transform.rotation).GetComponent<PlayerProjectile>();
             projectile.SetDamage(manaCost);
-
-            Debug.Log($"Player projectile with {manaCost} damage");
         }
 
     }

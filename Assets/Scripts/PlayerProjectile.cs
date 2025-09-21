@@ -1,5 +1,4 @@
 using RenderHeads.Services;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerProjectile : MonoBehaviour
@@ -10,7 +9,7 @@ public class PlayerProjectile : MonoBehaviour
     [SerializeField] AudioClip _launchClip;
     [SerializeField] AudioClip _hitClip;
 
-    public void SetDamage(int d) => d = _damage;
+    public void SetDamage(int d) => _damage = d;
     private int _damage = 5;
     private Rigidbody _rigidbody;
 
