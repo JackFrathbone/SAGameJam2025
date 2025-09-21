@@ -373,7 +373,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6734931530170869177, guid: 7d3e50c3f90beeb4fa9e8ae6978ccbb2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6812836407264746452}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7036213049465896255, guid: 7d3e50c3f90beeb4fa9e8ae6978ccbb2, type: 3}
       insertIndex: -1
@@ -411,3 +414,70 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!4 &7175795258951910054 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6734931530170869177, guid: 7d3e50c3f90beeb4fa9e8ae6978ccbb2, type: 3}
+  m_PrefabInstance: {fileID: 4531398923397064479}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6415016894912298047
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7175795258951910054}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: bc10bd024d41f49489974b818cb08d4c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bc10bd024d41f49489974b818cb08d4c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.167
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bc10bd024d41f49489974b818cb08d4c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.115
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bc10bd024d41f49489974b818cb08d4c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.475564
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bc10bd024d41f49489974b818cb08d4c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.00000022647463
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bc10bd024d41f49489974b818cb08d4c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.8796811
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bc10bd024d41f49489974b818cb08d4c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.00000004049559
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bc10bd024d41f49489974b818cb08d4c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bc10bd024d41f49489974b818cb08d4c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 123.208
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bc10bd024d41f49489974b818cb08d4c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bc10bd024d41f49489974b818cb08d4c, type: 3}
+      propertyPath: m_Name
+      value: BonkStick
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bc10bd024d41f49489974b818cb08d4c, type: 3}
+--- !u!4 &6812836407264746452 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bc10bd024d41f49489974b818cb08d4c, type: 3}
+  m_PrefabInstance: {fileID: 6415016894912298047}
+  m_PrefabAsset: {fileID: 0}
