@@ -1,4 +1,6 @@
 using DG.Tweening;
+using RenderHeads.Services;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -30,9 +32,16 @@ public class EnemyController : MonoBehaviour
     private float _attackCooldown;
 
     [Header("Animations")]
+    [SerializeField] List<AudioClip> _hurtSounds;
+    [SerializeField] List<AudioClip> _gibSounds;
+    [SerializeField] List<AudioClip> _alertSounds;
+
+    [Header("Animations")]
     private Animator _animator;
     [SerializeField] private Transform _gibParent;
     [SerializeField] private GameObject _gibPrefab;
+
+    private LazyService<GameManager> _gameManager;
 
     private void Start()
     {
@@ -97,6 +106,8 @@ public class EnemyController : MonoBehaviour
             if (hit.collider.CompareTag("Player"))
             {
                 _alerted = true;
+                _gameManager.Value.PlayAudioClip(_alertSounds[Random.Range(0, _alertSounds.Count)], 0.85f);
+                return;
             }
         }
     }
@@ -117,12 +128,15 @@ public class EnemyController : MonoBehaviour
     {
         _animator.SetTrigger("Hurt");
 
+        _gameManager.Value.PlayAudioClip(_hurtSounds[Random.Range(0, _hurtSounds.Count)]);
+
         _alerted = true;
 
         _currentHealth -= i;
 
         if (_currentHealth <= 0)
         {
+            _gameManager.Value.PlayAudioClip(_gibSounds[Random.Range(0, _gibSounds.Count)], 0.85f);
             Kill();
         }
     }

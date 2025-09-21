@@ -164,6 +164,23 @@ MonoBehaviour:
   _rangedAttack: 0
   _projectileParent: {fileID: 788222642501707328}
   _projectilePrefab: {fileID: 0}
+  _hurtSounds:
+  - {fileID: 8300000, guid: 1cc48ce8314476c4b9b1f1c89dd916ae, type: 3}
+  - {fileID: 8300000, guid: d428b8bce1c5f0c42be66cc47983c997, type: 3}
+  - {fileID: 8300000, guid: 1295b3d25ec68474ba6f06c16115ebfe, type: 3}
+  - {fileID: 8300000, guid: 8c47748dfd062ca45ba1a2ff540ce1e2, type: 3}
+  - {fileID: 8300000, guid: b5cc1b90579886347bef0bdbdc5114f8, type: 3}
+  - {fileID: 8300000, guid: 097fa384565fbed4bb8ac40c689f866b, type: 3}
+  - {fileID: 8300000, guid: fc5b79ad754bce346b023d55c68699f4, type: 3}
+  _gibSounds:
+  - {fileID: 8300000, guid: dc6540235e5ace143a39f30a4bdd67bb, type: 3}
+  - {fileID: 8300000, guid: a9ed79e4824e7b74792207ff2e5d4622, type: 3}
+  - {fileID: 8300000, guid: c6d5a80f9b41f2941a9d9bb818e51f1a, type: 3}
+  _alertSounds:
+  - {fileID: 8300000, guid: fdb64b6c883e47b4493bb7a94ceb8c21, type: 3}
+  - {fileID: 8300000, guid: 4c86e61609692184b911845a66324916, type: 3}
+  - {fileID: 8300000, guid: 9e25a2e03640dc54283b822096423cd5, type: 3}
+  - {fileID: 8300000, guid: 6e32d931154eaf54787d82303ef4b1cd, type: 3}
   _gibParent: {fileID: 8766727139131941103}
   _gibPrefab: {fileID: 1415820077066665243, guid: 267f35114b4923548aea2263c3c5bbc7, type: 3}
 --- !u!1 &3709089180510354297
