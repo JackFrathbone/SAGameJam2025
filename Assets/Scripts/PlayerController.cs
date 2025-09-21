@@ -373,7 +373,11 @@ public class PlayerController : MonoBehaviour
         {
 
             if (_chargeTime > 0)
-                DoAttack();
+            {
+                _animator.SetTrigger("Attack");
+                Invoke("DoAttack", 0.15f);
+            }
+     
 
             _animator.SetBool("Charging", false);
             _chargeTime = 0;
@@ -387,8 +391,6 @@ public class PlayerController : MonoBehaviour
         if (_currentMana >= manaCost)
         {
             _currentMana -= manaCost;
-
-            _animator.SetTrigger("Attack");
 
             Vector3 finalPosition = _playerCamera.transform.position + _playerCamera.transform.forward * 1f;
             PlayerProjectile projectile = Instantiate(_projectilePrefab, finalPosition, _playerCamera.transform.rotation).GetComponent<PlayerProjectile>();
