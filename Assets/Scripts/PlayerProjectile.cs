@@ -7,7 +7,7 @@ public class PlayerProjectile : MonoBehaviour
     [Header("Settings")]
     [SerializeField] float _speed = 10f;
 
-    [SerializeField] List<AudioClip> _launchClips;
+    [SerializeField] AudioClip _launchClip;
     [SerializeField] AudioClip _hitClip;
 
     public void SetDamage(int d) => d = _damage;
@@ -22,7 +22,7 @@ public class PlayerProjectile : MonoBehaviour
 
         Destroy(gameObject, 5f);
 
-        _gameManager.Value.PlayAudioClip(_launchClips[Random.Range(0,_launchClips.Count)]);
+        _gameManager.Value.PlayAudioClip(_launchClip, 0.5f, true);
     }
 
     private void FixedUpdate()

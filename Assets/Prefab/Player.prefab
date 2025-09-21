@@ -96,6 +96,11 @@ MonoBehaviour:
   _dashClips:
   - {fileID: 8300000, guid: 4b546111435fe0a4989ae4e1c10f53de, type: 3}
   - {fileID: 8300000, guid: 88acf558e1ef9b0448d870e68c14fa17, type: 3}
+  _hurtClips:
+  - {fileID: 8300000, guid: 6c99b1e2a13323f4dabdb83e99897375, type: 3}
+  - {fileID: 8300000, guid: 3fcd621be0d221649aba911e261d17c7, type: 3}
+  - {fileID: 8300000, guid: 0df3480e965882044b1a057b64d4f23e, type: 3}
+  - {fileID: 8300000, guid: d73eec9b1debef240a76e354867ff5c1, type: 3}
 --- !u!114 &7597250250145563237
 MonoBehaviour:
   m_ObjectHideFlags: 0

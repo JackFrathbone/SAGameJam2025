@@ -97,10 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerProjectile
   _speed: 150
-  _launchClips:
-  - {fileID: 8300000, guid: dc6540235e5ace143a39f30a4bdd67bb, type: 3}
-  - {fileID: 8300000, guid: a9ed79e4824e7b74792207ff2e5d4622, type: 3}
-  - {fileID: 8300000, guid: c6d5a80f9b41f2941a9d9bb818e51f1a, type: 3}
+  _launchClip: {fileID: 8300000, guid: 1860f7859476eee448bc8e694cf8572a, type: 3}
   _hitClip: {fileID: 8300000, guid: ff11d25bd2a0bf04aa1c3812779018f0, type: 3}
 --- !u!95 &6960960836134271171
 Animator:

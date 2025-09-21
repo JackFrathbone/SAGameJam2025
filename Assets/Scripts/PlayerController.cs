@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioClip _syphonClip;
     [SerializeField] private AudioClip _finishSyphon;
     [SerializeField] private List<AudioClip> _dashClips;
+    [SerializeField] private List<AudioClip> _hurtClips;
 
     [Header("Animation")]
     private Animator _animator;
@@ -287,7 +288,7 @@ public class PlayerController : MonoBehaviour
     {
         if (i > 0)
         {
-            _gameManager.Value.PlayAudioClip(_syphonClip, 0.25f, false, 0f, 0f, true);
+            _gameManager.Value.PlayAudioClip(_syphonClip, 0.15f, false, 0f, 0f, true);
         }
 
         _currentMana = (int)Mathf.Clamp(_currentMana += i, 0f, _totalMana);
@@ -303,7 +304,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (i > 0)
                 {
-                    _gameManager.Value.PlayAudioClip(_finishSyphon, 0.5f);
+                    _gameManager.Value.PlayAudioClip(_finishSyphon, 0.2f);
                 }
 
                 _updatingBars = false;
@@ -325,6 +326,8 @@ public class PlayerController : MonoBehaviour
         {
             if (hitSource != null)
                 ApplyKnockback(hitSource);
+
+            _gameManager.Value.PlayAudioClip(_hurtClips[Random.Range(0, _hurtClips.Count)], 0.85f);
 
             AddHealth(-i);
             AddMana(i);
@@ -377,7 +380,7 @@ public class PlayerController : MonoBehaviour
                 _animator.SetTrigger("Attack");
                 Invoke("DoAttack", 0.15f);
             }
-     
+
 
             _animator.SetBool("Charging", false);
             _chargeTime = 0;

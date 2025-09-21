@@ -26,7 +26,7 @@ public class GameManager : MonoService
 
     }
 
-    public void PlayAudioClip(AudioClip clip, float volume = 0.5f, bool randomPitch = false, float minPitch = -0.85f, float maxPitch = 0.25f, bool loop = false)
+    public void PlayAudioClip(AudioClip clip, float volume = 0.5f, bool randomPitch = false, float minPitch = 0.95f, float maxPitch = 1.05f, bool loop = false)
     {
         _clipAudioSource.pitch = randomPitch ? Random.Range(minPitch, maxPitch) : 1;
 
