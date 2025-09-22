@@ -48,7 +48,7 @@ public class Door : MonoBehaviour
         _linkedEnemies.RemoveAll(item => item == null);
         _linkedSwitches.RemoveAll(item => item == null);
 
-        if (_linkedEnemies.Count == 0 && _linkedSwitches.Count == 0 && !_breakable)
+        if (_linkedEnemies.Count == 0 && _linkedSwitches.Count == 0 && !_breakable && !_bossDoor)
         {
             Destroy(gameObject, 0.1f);
         }
