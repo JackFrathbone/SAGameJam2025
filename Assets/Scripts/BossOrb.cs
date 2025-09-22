@@ -1,6 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class BossOrb : MonoBehaviour
 {
@@ -23,6 +24,9 @@ public class BossOrb : MonoBehaviour
     [SerializeField] GameObject _eye;
     private Rigidbody _rigidbody;
 
+    [SerializeField] GameObject _bossCanvas;
+    [SerializeField] Slider _healthSlider;
+
     [Header("Data")]
     private int _currentHealth;
 
@@ -37,9 +41,14 @@ public class BossOrb : MonoBehaviour
         _material = GetComponent<MeshRenderer>().material;
         _rigidbody = GetComponent<Rigidbody>();
 
+        _bossCanvas.SetActive(false);
+
         _startPos = transform.position;
 
         _currentHealth = _bossHealth;
+
+        _healthSlider.maxValue = _bossHealth;
+        _healthSlider.value = _currentHealth;
     }
 
     private void OnDisable()
@@ -50,6 +59,8 @@ public class BossOrb : MonoBehaviour
 
     private void Update()
     {
+        if (_bossCanvas != null)
+            _healthSlider.value = _currentHealth;
 
         if (!_attacking || _shooting)
         {
@@ -65,6 +76,8 @@ public class BossOrb : MonoBehaviour
         {
             if (hit.collider.CompareTag("Player"))
             {
+                _bossCanvas.SetActive(true);
+
                 int chance = Random.Range(0, 2);
 
                 if (chance == 0)
@@ -133,9 +146,11 @@ public class BossOrb : MonoBehaviour
     {
         _currentHealth -= i;
 
-        if(_currentHealth <= 0)
+        if (_currentHealth <= 0)
         {
             OnBossDeathEvent.Invoke();
+
+            _bossCanvas.SetActive(false);
 
             gameObject.tag = "Untagged";
             _eye.SetActive(false);
