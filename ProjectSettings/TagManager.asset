@@ -10,6 +10,7 @@ TagManager:
   - TutorialPrompt
   - Door
   - Switch
+  - Boss
   layers:
   - Default
   - TransparentFX

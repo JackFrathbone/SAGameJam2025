@@ -128,6 +128,10 @@ public class PlayerController : MonoBehaviour
         {
             TakeDamage(35, hit.transform);
         }
+        else if (hit.gameObject.CompareTag("Boss"))
+        {
+            TakeDamage(50, hit.transform);
+        }
     }
 
     private void OnDisable()
