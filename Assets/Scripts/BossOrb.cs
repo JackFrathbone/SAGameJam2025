@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BossOrb : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class BossOrb : MonoBehaviour
     [SerializeField] float _chargeSpeed = 8f;
     [SerializeField] float _returnSpeed = 5f;
     [SerializeField] LayerMask _chargeLayerMask;
+
+    public UnityEvent OnBossDeathEvent;
 
     private PlayerController _playerController;
 
@@ -132,6 +135,8 @@ public class BossOrb : MonoBehaviour
 
         if(_currentHealth <= 0)
         {
+            OnBossDeathEvent.Invoke();
+
             gameObject.tag = "Untagged";
             _eye.SetActive(false);
             _rigidbody.isKinematic = false;
