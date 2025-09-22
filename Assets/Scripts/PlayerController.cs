@@ -88,6 +88,8 @@ public class PlayerController : MonoBehaviour
     public void SetLastCrystal(Transform t) => _lastUsedCrystal = t;
     private Transform _lastUsedCrystal;
 
+    private bool _paused;
+    [SerializeField] GameObject _pauseCanvas;
 
     private LazyService<GameManager> _gameManager;
 
@@ -98,13 +100,13 @@ public class PlayerController : MonoBehaviour
 
         _deathMenu.SetActive(false);
 
+        _pauseCanvas.SetActive(false);
+
         _playerCamera = Camera.main;
 
         _originalSpeed = _walkingSpeed;
 
         _bloodBall.SetActive(false);
-
-        RefreshMouseSensitivity();
 
         AllowMovement();
         UpdateBars();
@@ -112,12 +114,32 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        RefreshMouseSensitivity();
+
         ToggleCrouch();
         MovePlayer();
         CheckDash();
         CheckAttack();
         CheckRegenHealth();
         CheckBarAudio();
+
+        if (Input.GetButtonDown("Cancel"))
+        {
+            _paused = !_paused;
+
+            if (_paused)
+            {
+                StopMovement();
+                _pauseCanvas.SetActive(true);
+                _gameManager.Value.PauseGame();
+            }
+            else
+            {
+                AllowMovement();
+                _pauseCanvas.SetActive(false);
+                _gameManager.Value.UnPauseGame();
+            }
+        }
 
         _damageCooldown -= Time.deltaTime;
     }
