@@ -127,26 +127,23 @@ MonoBehaviour:
     dialogue: I must bounce on it. CRAZY STYLE!!
   tut_imageTextPairCombo:
   - tut_character: {fileID: 21300000, guid: 5d0f38d3b82c4aa47951137716323dc3, type: 3}
-    tut_dialogue: MOVE with WASD!
+    tut_dialogue: MOVE with WASD
   - tut_character: {fileID: 21300000, guid: 5d0f38d3b82c4aa47951137716323dc3, type: 3}
-    tut_dialogue: CROUCH with CTRL!
+    tut_dialogue: 'JUMP with SPACE '
   - tut_character: {fileID: 21300000, guid: 5d0f38d3b82c4aa47951137716323dc3, type: 3}
-    tut_dialogue: JUMP with SPACE!
+    tut_dialogue: 'TAKE DAMAGE to generate MANA '
   - tut_character: {fileID: 21300000, guid: 5d0f38d3b82c4aa47951137716323dc3, type: 3}
-    tut_dialogue: TAKE DAMAGE to generate MANA
+    tut_dialogue: 'CAST SPELL with LEFT CLICK, costs mana '
   - tut_character: {fileID: 21300000, guid: 5d0f38d3b82c4aa47951137716323dc3, type: 3}
-    tut_dialogue: 'CAST SPELL with LEFT CLICK, costs MANA '
-  - tut_character: {fileID: 21300000, guid: 5d0f38d3b82c4aa47951137716323dc3, type: 3}
-    tut_dialogue: HOLD LEFT CLICK to charge up your DAMAGE at a higher MANA cost
+    tut_dialogue: 'HOLD LEFT CLICK to charge up your DAMAGE at a higher MANA cost '
   - tut_character: {fileID: 21300000, guid: 5d0f38d3b82c4aa47951137716323dc3, type: 3}
     tut_dialogue: 'HEAL yourself by HOLDING RIGHT CLICK, converts MANA back to HEALTH '
   - tut_character: {fileID: 21300000, guid: 5d0f38d3b82c4aa47951137716323dc3, type: 3}
-    tut_dialogue: 'DASH across chasms with SHIFT, costs some MANA '
+    tut_dialogue: DASH across gaps with SHIFT, costs some MANA
   - tut_character: {fileID: 21300000, guid: 5d0f38d3b82c4aa47951137716323dc3, type: 3}
     tut_dialogue: 'KILL ALL ENEMIES in the room to unlock RED DOORS '
   - tut_character: {fileID: 21300000, guid: 5d0f38d3b82c4aa47951137716323dc3, type: 3}
-    tut_dialogue: 'CAST SPELLS at the CRYSTAL SWITCH until it has lit up to ACTIVATE
-      IT '
+    tut_dialogue: 'CAST SPELLS at the CRYSTAL SWITCH until it spins to ACTIVATE IT '
   - tut_character: {fileID: 21300000, guid: 5d0f38d3b82c4aa47951137716323dc3, type: 3}
     tut_dialogue: 'FIND the BOSS KEY somewhere else in the level to UNLOCK this DOOR '
   barkseconds: 3
