@@ -22,6 +22,7 @@ TagManager:
   - Tut9
   - Tut10
   - Tut11
+  - BossPrompt
   layers:
   - Default
   - TransparentFX
