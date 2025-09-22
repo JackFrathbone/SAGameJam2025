@@ -126,7 +126,73 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSystem
   imageTextPairCombo:
   - character: {fileID: 21300000, guid: 143d8947097e76a4caf5663f0550ec4c, type: 3}
-    dialogue: I must bounce on it. CRAZY STYLE!!
+    dialogue: I must bounce on the spikes. CRAZY STYLE!!
+  - character: {fileID: 21300000, guid: 143d8947097e76a4caf5663f0550ec4c, type: 3}
+    dialogue: 'EVERYBODY MOVEMENT! '
+  - character: {fileID: 21300000, guid: 143d8947097e76a4caf5663f0550ec4c, type: 3}
+    dialogue: 'PUMP UP THE JAM! '
+  - character: {fileID: 21300000, guid: 143d8947097e76a4caf5663f0550ec4c, type: 3}
+    dialogue: '*unz unz unz unz* '
+  - character: {fileID: 21300000, guid: 143d8947097e76a4caf5663f0550ec4c, type: 3}
+    dialogue: 'When the MUSIC IS GLAD, there is NOTHING TO BE SAD! '
+  - character: {fileID: 21300000, guid: 143d8947097e76a4caf5663f0550ec4c, type: 3}
+    dialogue: 'BASS! '
+  - character: {fileID: 21300000, guid: 143d8947097e76a4caf5663f0550ec4c, type: 3}
+    dialogue: 'I ponder the ORBS! '
+  - character: {fileID: 21300000, guid: 143d8947097e76a4caf5663f0550ec4c, type: 3}
+    dialogue: 'PUNISH ME! '
+  - character: {fileID: 21300000, guid: 143d8947097e76a4caf5663f0550ec4c, type: 3}
+    dialogue: 'Give ME a TASTE! '
+  - character: {fileID: 21300000, guid: 143d8947097e76a4caf5663f0550ec4c, type: 3}
+    dialogue: 'Care to leave a mark? '
+  - character: {fileID: 21300000, guid: 143d8947097e76a4caf5663f0550ec4c, type: 3}
+    dialogue: 'Mentally not okay but physically SLAY! '
+  - character: {fileID: 21300000, guid: 143d8947097e76a4caf5663f0550ec4c, type: 3}
+    dialogue: BEHOLD MY GLORIOUS ORBS!
+  - character: {fileID: 21300000, guid: 143d8947097e76a4caf5663f0550ec4c, type: 3}
+    dialogue: 'Woof! '
+  - character: {fileID: 21300000, guid: 7d895958febee1f4cb6e3d103864253f, type: 3}
+    dialogue: "Why can\u2019t you just be normal? *SCREAMS* "
+  - character: {fileID: 21300000, guid: 7d895958febee1f4cb6e3d103864253f, type: 3}
+    dialogue: 'YOU are the MONSTER! '
+  - character: {fileID: 21300000, guid: 7d895958febee1f4cb6e3d103864253f, type: 3}
+    dialogue: 'I hate Mondays. '
+  - character: {fileID: 21300000, guid: 7d895958febee1f4cb6e3d103864253f, type: 3}
+    dialogue: If I kill him, do I get a raise?
+  - character: {fileID: 21300000, guid: 7d895958febee1f4cb6e3d103864253f, type: 3}
+    dialogue: 'Go back to your cell, lustful beast! '
+  - character: {fileID: 21300000, guid: 7d895958febee1f4cb6e3d103864253f, type: 3}
+    dialogue: 'Taste mine stick of justice, weirdo! '
+  - character: {fileID: 21300000, guid: 7d895958febee1f4cb6e3d103864253f, type: 3}
+    dialogue: Go to horny jail! *BONK*
+  - character: {fileID: 21300000, guid: 7d895958febee1f4cb6e3d103864253f, type: 3}
+    dialogue: 'Do I really have to touch him? '
+  - character: {fileID: 21300000, guid: 7d895958febee1f4cb6e3d103864253f, type: 3}
+    dialogue: 'Oh god, I behold his glorious ORBS! '
+  - character: {fileID: 21300000, guid: 7d895958febee1f4cb6e3d103864253f, type: 3}
+    dialogue: 'Why is he so SHINY?? '
+  - character: {fileID: 21300000, guid: 7d895958febee1f4cb6e3d103864253f, type: 3}
+    dialogue: 'You want me to do WHAT with my stick? '
+  - character: {fileID: 21300000, guid: 7d895958febee1f4cb6e3d103864253f, type: 3}
+    dialogue: 'Why do I hear boss music? '
+  - character: {fileID: 21300000, guid: 7d895958febee1f4cb6e3d103864253f, type: 3}
+    dialogue: "Why can\u2019t you just be normal? *SCREAMS* "
+  - character: {fileID: 21300000, guid: 7d895958febee1f4cb6e3d103864253f, type: 3}
+    dialogue: "Nah\u2026this aint right."
+  - character: {fileID: 21300000, guid: 7d895958febee1f4cb6e3d103864253f, type: 3}
+    dialogue: 'Huh. Must''ve been the wind. '
+  - character: {fileID: 21300000, guid: 143d8947097e76a4caf5663f0550ec4c, type: 3}
+    dialogue: PARTY LIKE IT'S 1999!
+  - character: {fileID: 21300000, guid: 143d8947097e76a4caf5663f0550ec4c, type: 3}
+    dialogue: '*MOANS*'
+  - character: {fileID: 21300000, guid: 7d895958febee1f4cb6e3d103864253f, type: 3}
+    dialogue: And tomorrow's my last day...
+  - character: {fileID: 21300000, guid: 7d895958febee1f4cb6e3d103864253f, type: 3}
+    dialogue: 'Did he just bark? '
+  - character: {fileID: 21300000, guid: 143d8947097e76a4caf5663f0550ec4c, type: 3}
+    dialogue: PARTY BABY!
+  - character: {fileID: 21300000, guid: 143d8947097e76a4caf5663f0550ec4c, type: 3}
+    dialogue: BIG NATURAL ORBS!
   tut_imageTextPairCombo:
   - tut_character: {fileID: 21300000, guid: 5d0f38d3b82c4aa47951137716323dc3, type: 3}
     tut_dialogue: MOVE with WASD
