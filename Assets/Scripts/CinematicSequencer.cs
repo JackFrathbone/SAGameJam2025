@@ -25,6 +25,8 @@ public class CinematicSequencer : MonoBehaviour
     [SerializeField]
     private GameObject RecordScratch;
 
+    [SerializeField]
+    private SceneController sceneController;
 
     void Start()
     {
@@ -171,6 +173,7 @@ public class CinematicSequencer : MonoBehaviour
         if(currentIndex == 14)
         {
             Debug.Log("GAME START");
+            sceneController.playGame();
         }
     }
 }
