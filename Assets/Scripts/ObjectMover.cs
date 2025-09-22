@@ -6,6 +6,7 @@ public class ObjectMover : MonoBehaviour
 
     [SerializeField] private Vector3 destinationPos;
     [SerializeField] private float duration;
+    [SerializeField] private AudioSource audioSource;
 
     private void Start()
     {
@@ -14,6 +15,10 @@ public class ObjectMover : MonoBehaviour
 
     public void MoveToDestination()
     {        
+        if (audioSource != null)
+        {
+            audioSource.Play();
+        }
         transform.DOLocalMove(destinationPos, duration);
     }
 
