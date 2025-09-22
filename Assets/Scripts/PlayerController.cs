@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] int _totalHealth = 100;
     [SerializeField] int _totalMana = 100;
     [SerializeField, Tooltip("How much health for each mana")] int _regenRatio = 2;
-    [SerializeField] float _regenSpeed = 1.5f;
+    [SerializeField] float _regenSpeed = 0.5f;
     [SerializeField] float _damageInvulnerability = 1.5f;
 
     private int _currentHealth = 100;
