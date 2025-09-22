@@ -1,15 +1,17 @@
 using System.Collections;
+using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
+using System.Text.RegularExpressions;
 
 public class DialogueSystem : MonoBehaviour
 {
     [SerializeField] public ImageTextPair[] imageTextPairCombo;
     [SerializeField] public TutorialImageTextPair[] tut_imageTextPairCombo;
 
-    [SerializeField] private float seconds;
+    [SerializeField] private float barkseconds;
+    [SerializeField] private float tutseconds;
     [SerializeField] private GameObject speakerUI;
     [SerializeField] private TextMeshProUGUI dialogueTMP;
     [SerializeField] private Image characterImg;
@@ -61,13 +63,13 @@ public class DialogueSystem : MonoBehaviour
 
                     if (dialogueTMP != null && !string.IsNullOrEmpty(tut_currentPair.tut_dialogue))
                     {
-                        dialogueTMP.text = tut_currentPair.tut_dialogue;
+                        dialogueTMP.text = FormatDialogueText(tut_currentPair.tut_dialogue);
                     }
 
                     currentDialogueIndex++;
 
                     Destroy(other.gameObject);
-                    StartCoroutine("DisableUI");
+                    StartCoroutine("DisableTutUI");
                 }
             }
         }
@@ -75,10 +77,21 @@ public class DialogueSystem : MonoBehaviour
 
     IEnumerator DisableUI()
     {
-        yield return new WaitForSeconds(seconds);
+        yield return new WaitForSeconds(barkseconds);
         speakerUI.SetActive(false);
     }
 
+
+    IEnumerator DisableTutUI()
+    {
+        yield return new WaitForSeconds(tutseconds);
+        speakerUI.SetActive(false);
+    }
+
+    private string FormatDialogueText(string input)
+    {
+        return Regex.Replace(input, @"\b[A-Z]+\b", "<color=#C0392B>$0</color>");
+    }
 }
 
 [System.Serializable]
