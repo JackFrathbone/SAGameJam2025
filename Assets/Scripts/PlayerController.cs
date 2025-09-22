@@ -430,9 +430,9 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetButtonDown("Sprint") && !isDashing && _chargeTime <= 0)
         {
-            if (_currentMana >= 15f)
+            if (_currentMana >= 5f)
             {
-                AddMana(-15);
+                AddMana(-5);
                 isDashing = true;
 
                 Vector3 forward = transform.forward;
