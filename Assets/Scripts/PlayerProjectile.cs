@@ -13,6 +13,9 @@ public class PlayerProjectile : MonoBehaviour
     private int _damage = 5;
     private Rigidbody _rigidbody;
 
+    public void SetPlayer(PlayerController p) => _playerController = p;
+    private PlayerController _playerController;
+
     private LazyService<GameManager> _gameManager;
 
     private void Start()
@@ -57,6 +60,7 @@ public class PlayerProjectile : MonoBehaviour
         {
             if (collision.collider.TryGetComponent<DoorSwitch>(out DoorSwitch doorSwitch))
             {
+                _playerController.SetLastCrystal(doorSwitch.transform);
                 doorSwitch.HitSwitch();
             }
         }

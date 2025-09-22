@@ -73,9 +73,21 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private List<AudioClip> _dashClips;
     [SerializeField] private List<AudioClip> _hurtClips;
 
+    [SerializeField] private AudioClip _youDiedClip;
+    [SerializeField] private AudioClip _giggleClip;
+
     [Header("Animation")]
     private Animator _animator;
     [SerializeField] GameObject _bloodBall;
+
+
+    [Header("Death")]
+    [SerializeField] GameObject _deathMenu;
+    [SerializeField] Image _deathFade;
+
+    public void SetLastCrystal(Transform t) => _lastUsedCrystal = t;
+    private Transform _lastUsedCrystal;
+
 
     private LazyService<GameManager> _gameManager;
 
@@ -83,6 +95,8 @@ public class PlayerController : MonoBehaviour
     {
         _characterController = GetComponent<CharacterController>();
         _animator = GetComponentInChildren<Animator>();
+
+        _deathMenu.SetActive(false);
 
         _playerCamera = Camera.main;
 
@@ -120,6 +134,8 @@ public class PlayerController : MonoBehaviour
     {
         DOTween.Kill(_healthBar);
         DOTween.Kill(_manaBar);
+
+        _gameManager.Value.UnPauseGame();
     }
 
     public void StopMovement()
@@ -127,8 +143,8 @@ public class PlayerController : MonoBehaviour
         _cantJump = true;
         _cantMove = true;
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void AllowMovement()
@@ -362,6 +378,9 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(int i, Transform hitSource = null, bool ignoreCooldown = false)
     {
+        if (_cantMove)
+            return;
+
         if (_damageCooldown <= 0 || ignoreCooldown == true)
         {
             if (hitSource != null)
@@ -373,6 +392,11 @@ public class PlayerController : MonoBehaviour
             AddMana(i);
 
             _damageCooldown = _damageInvulnerability;
+
+            if (_currentHealth <= 0)
+            {
+                PlayerDeath();
+            }
         }
     }
 
@@ -462,10 +486,62 @@ public class PlayerController : MonoBehaviour
             Vector3 finalPosition = _playerCamera.transform.position + _playerCamera.transform.forward * 1f;
             PlayerProjectile projectile = Instantiate(_projectilePrefab, finalPosition, _playerCamera.transform.rotation).GetComponent<PlayerProjectile>();
             projectile.SetDamage(manaCost);
+            projectile.SetPlayer(this);
         }
 
     }
 
+    private void PlayerDeath()
+    {
+        StopMovement();
+
+        _deathFade.DOKill(true);
+        _deathFade.DOFade(1f, 2f)
+        .OnComplete(() =>
+        {
+            _gameManager.Value.PlayAudioClip(_youDiedClip, 0.9f);
+            _gameManager.Value.PauseGame();
+            _deathMenu.SetActive(true);
+        });
+    }
+
+    public void LoadCheckpoint()
+    {
+        _deathFade.DOKill(true);
+        _deathFade.DOFade(0f, 0.1f);
+
+        _deathMenu.SetActive(false);
+
+        AddHealth(50);
+        AddMana(25);
+
+        _gameManager.Value.UnPauseGame();
+        AllowMovement();
+
+        _gameManager.Value.PlayAudioClip(_giggleClip, 0.9f);
+
+        if (_lastUsedCrystal != null)
+        {
+            _characterController.enabled = false;
+            transform.position = _lastUsedCrystal.position;
+            _characterController.enabled = true;
+        }
+        else
+        {
+            Restart();
+        }
+    }
+
+    public void Restart()
+    {
+        _gameManager.Value.UnPauseGame();
+        _gameManager.Value.RestartLevel();
+    }
+
+    public void MainMenu()
+    {
+        _gameManager.Value.LoadLevel(0);
+    }
 
     public void RefreshMouseSensitivity()
     {
