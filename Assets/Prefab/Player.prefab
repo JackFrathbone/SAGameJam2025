@@ -193,6 +193,12 @@ MonoBehaviour:
     dialogue: PARTY BABY!
   - character: {fileID: 21300000, guid: 143d8947097e76a4caf5663f0550ec4c, type: 3}
     dialogue: BIG NATURAL ORBS!
+  - character: {fileID: 21300000, guid: 143d8947097e76a4caf5663f0550ec4c, type: 3}
+    dialogue: 'TASTE MY ORBS '
+  - character: {fileID: 21300000, guid: 143d8947097e76a4caf5663f0550ec4c, type: 3}
+    dialogue: PONDER MY ORBS!
+  - character: {fileID: 21300000, guid: ac0e9e03df35eb040a661beba9689742, type: 3}
+    dialogue: PONDER THIS BITCH!
   tut_imageTextPairCombo:
   - tut_character: {fileID: 21300000, guid: 5d0f38d3b82c4aa47951137716323dc3, type: 3}
     tut_dialogue: MOVE with WASD

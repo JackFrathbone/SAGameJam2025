@@ -48,6 +48,29 @@ public class DialogueSystem : MonoBehaviour
 
         }
 
+
+        if (other.gameObject.CompareTag("BossPrompt"))
+        {
+            speakerUI.SetActive(true);
+
+            ImageTextPair boss = imageTextPairCombo[36];
+
+            if (characterImg != null && boss.character != null)
+            {
+                characterImg.sprite = boss.character;
+            }
+
+            if (dialogueTMP != null && !string.IsNullOrEmpty(boss.dialogue))
+            {
+                dialogueTMP.text = FormatDialogueText(boss.dialogue);
+            }
+
+
+            Destroy(other.gameObject);
+            StartCoroutine("DisableUI");
+
+        }
+
         if (other.gameObject.CompareTag("Tut1"))
         {   
             speakerUI.SetActive(true);
