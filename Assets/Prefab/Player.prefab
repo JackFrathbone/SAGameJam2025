@@ -143,7 +143,7 @@ MonoBehaviour:
   - tut_character: {fileID: 21300000, guid: 5d0f38d3b82c4aa47951137716323dc3, type: 3}
     tut_dialogue: DASH across gaps with SHIFT, costs some MANA
   - tut_character: {fileID: 21300000, guid: 5d0f38d3b82c4aa47951137716323dc3, type: 3}
-    tut_dialogue: 'KILL ALL ENEMIES in the room to unlock RED DOORS '
+    tut_dialogue: KILL ALL ENEMIES in the room to unlock GREEN DOORS
   - tut_character: {fileID: 21300000, guid: 5d0f38d3b82c4aa47951137716323dc3, type: 3}
     tut_dialogue: 'CAST SPELLS at the CRYSTAL SWITCH until it spins to ACTIVATE IT '
   - tut_character: {fileID: 21300000, guid: 5d0f38d3b82c4aa47951137716323dc3, type: 3}
