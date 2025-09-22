@@ -487,7 +487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c39a5cad1817554da1c5240849d0ebe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Switch
-  _hitsRequired: 1
+  _hitsRequired: 3
   OnSwitchActivate:
     m_PersistentCalls:
       m_Calls: []
