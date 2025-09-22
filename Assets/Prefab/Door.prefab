@@ -1822,7 +1822,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 1224ac82d81db1b409729f5bd794aba6, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 711cad6699845ca41a572c1d8f1da1b4, type: 2}
+      objectReference: {fileID: 2100000, guid: d70d7f03c89075b4697367f7ec07b02f, type: 2}
     - target: {fileID: 919132149155446097, guid: 1224ac82d81db1b409729f5bd794aba6, type: 3}
       propertyPath: m_Name
       value: DoorGold
@@ -2000,7 +2000,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 1224ac82d81db1b409729f5bd794aba6, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 711cad6699845ca41a572c1d8f1da1b4, type: 2}
+      objectReference: {fileID: 2100000, guid: 6ba7d543f1719b84ebfefeac5eb75cf7, type: 2}
     - target: {fileID: 919132149155446097, guid: 1224ac82d81db1b409729f5bd794aba6, type: 3}
       propertyPath: m_Name
       value: DoorGreen
