@@ -48,31 +48,227 @@ public class DialogueSystem : MonoBehaviour
 
         }
 
-        if (other.gameObject.CompareTag("TutorialPrompt"))
-        {
-                if (currentDialogueIndex < tut_imageTextPairCombo.Length)
-                {
-                    speakerUI.SetActive(true);
+        if (other.gameObject.CompareTag("Tut1"))
+        {   
+            speakerUI.SetActive(true);
 
-                    TutorialImageTextPair tut_currentPair = tut_imageTextPairCombo[currentDialogueIndex];
+            TutorialImageTextPair tut_currentPair = tut_imageTextPairCombo[0];
 
-                    if (characterImg != null && tut_currentPair.tut_character != null)
-                    {
-                        characterImg.sprite = tut_currentPair.tut_character;
-                    }
-
-                    if (dialogueTMP != null && !string.IsNullOrEmpty(tut_currentPair.tut_dialogue))
-                    {
-                        dialogueTMP.text = FormatDialogueText(tut_currentPair.tut_dialogue);
-                    }
-
-                    currentDialogueIndex++;
-
-                    Destroy(other.gameObject);
-                    StartCoroutine("DisableTutUI");
-                }
+            if (characterImg != null && tut_currentPair.tut_character != null)
+            {
+                characterImg.sprite = tut_currentPair.tut_character;
             }
+
+            if (dialogueTMP != null && !string.IsNullOrEmpty(tut_currentPair.tut_dialogue))
+            {
+                dialogueTMP.text = FormatDialogueText(tut_currentPair.tut_dialogue);
+            }
+
+
+            StartCoroutine("DisableTutUI");
+                
         }
+
+        if (other.gameObject.CompareTag("Tut2"))
+        {
+            speakerUI.SetActive(true);
+
+            TutorialImageTextPair tut_currentPair = tut_imageTextPairCombo[1];
+
+            if (characterImg != null && tut_currentPair.tut_character != null)
+            {
+                characterImg.sprite = tut_currentPair.tut_character;
+            }
+
+            if (dialogueTMP != null && !string.IsNullOrEmpty(tut_currentPair.tut_dialogue))
+            {
+                dialogueTMP.text = FormatDialogueText(tut_currentPair.tut_dialogue);
+            }
+
+            StartCoroutine("DisableTutUI");
+
+        }
+
+        if (other.gameObject.CompareTag("Tut3"))
+        {
+            speakerUI.SetActive(true);
+
+            TutorialImageTextPair tut_currentPair = tut_imageTextPairCombo[2];
+
+            if (characterImg != null && tut_currentPair.tut_character != null)
+            {
+                characterImg.sprite = tut_currentPair.tut_character;
+            }
+
+            if (dialogueTMP != null && !string.IsNullOrEmpty(tut_currentPair.tut_dialogue))
+            {
+                dialogueTMP.text = FormatDialogueText(tut_currentPair.tut_dialogue);
+            }
+
+            StartCoroutine("DisableTutUI");
+
+        }
+
+        if (other.gameObject.CompareTag("Tut4"))
+        {
+            speakerUI.SetActive(true);
+
+            TutorialImageTextPair tut_currentPair = tut_imageTextPairCombo[3];
+
+            if (characterImg != null && tut_currentPair.tut_character != null)
+            {
+                characterImg.sprite = tut_currentPair.tut_character;
+            }
+
+            if (dialogueTMP != null && !string.IsNullOrEmpty(tut_currentPair.tut_dialogue))
+            {
+                dialogueTMP.text = FormatDialogueText(tut_currentPair.tut_dialogue);
+            }
+
+            StartCoroutine("DisableTutUI");
+
+        }
+
+        if (other.gameObject.CompareTag("Tut5"))
+        {
+            speakerUI.SetActive(true);
+
+            TutorialImageTextPair tut_currentPair = tut_imageTextPairCombo[4];
+
+            if (characterImg != null && tut_currentPair.tut_character != null)
+            {
+                characterImg.sprite = tut_currentPair.tut_character;
+            }
+
+            if (dialogueTMP != null && !string.IsNullOrEmpty(tut_currentPair.tut_dialogue))
+            {
+                dialogueTMP.text = FormatDialogueText(tut_currentPair.tut_dialogue);
+            }
+
+            StartCoroutine("DisableTutUI");
+
+        }
+
+        if (other.gameObject.CompareTag("Tut6"))
+        {
+            speakerUI.SetActive(true);
+
+            TutorialImageTextPair tut_currentPair = tut_imageTextPairCombo[5];
+
+            if (characterImg != null && tut_currentPair.tut_character != null)
+            {
+                characterImg.sprite = tut_currentPair.tut_character;
+            }
+
+            if (dialogueTMP != null && !string.IsNullOrEmpty(tut_currentPair.tut_dialogue))
+            {
+                dialogueTMP.text = FormatDialogueText(tut_currentPair.tut_dialogue);
+            }
+
+            StartCoroutine("DisableTutUI");
+
+        }
+
+        if (other.gameObject.CompareTag("Tut7"))
+        {
+            speakerUI.SetActive(true);
+
+            TutorialImageTextPair tut_currentPair = tut_imageTextPairCombo[6];
+
+            if (characterImg != null && tut_currentPair.tut_character != null)
+            {
+                characterImg.sprite = tut_currentPair.tut_character;
+            }
+
+            if (dialogueTMP != null && !string.IsNullOrEmpty(tut_currentPair.tut_dialogue))
+            {
+                dialogueTMP.text = FormatDialogueText(tut_currentPair.tut_dialogue);
+            }
+
+            StartCoroutine("DisableTutUI");
+
+        }
+
+        if (other.gameObject.CompareTag("Tut8"))
+        {
+            speakerUI.SetActive(true);
+
+            TutorialImageTextPair tut_currentPair = tut_imageTextPairCombo[7];
+
+            if (characterImg != null && tut_currentPair.tut_character != null)
+            {
+                characterImg.sprite = tut_currentPair.tut_character;
+            }
+
+            if (dialogueTMP != null && !string.IsNullOrEmpty(tut_currentPair.tut_dialogue))
+            {
+                dialogueTMP.text = FormatDialogueText(tut_currentPair.tut_dialogue);
+            }
+
+            StartCoroutine("DisableTutUI");
+
+        }
+
+        if (other.gameObject.CompareTag("Tut9"))
+        {
+            speakerUI.SetActive(true);
+
+            TutorialImageTextPair tut_currentPair = tut_imageTextPairCombo[8];
+
+            if (characterImg != null && tut_currentPair.tut_character != null)
+            {
+                characterImg.sprite = tut_currentPair.tut_character;
+            }
+
+            if (dialogueTMP != null && !string.IsNullOrEmpty(tut_currentPair.tut_dialogue))
+            {
+                dialogueTMP.text = FormatDialogueText(tut_currentPair.tut_dialogue);
+            }
+
+            StartCoroutine("DisableTutUI");
+
+        }
+
+        if (other.gameObject.CompareTag("Tut10"))
+        {
+            speakerUI.SetActive(true);
+
+            TutorialImageTextPair tut_currentPair = tut_imageTextPairCombo[9];
+
+            if (characterImg != null && tut_currentPair.tut_character != null)
+            {
+                characterImg.sprite = tut_currentPair.tut_character;
+            }
+
+            if (dialogueTMP != null && !string.IsNullOrEmpty(tut_currentPair.tut_dialogue))
+            {
+                dialogueTMP.text = FormatDialogueText(tut_currentPair.tut_dialogue);
+            }
+
+            StartCoroutine("DisableTutUI");
+
+        }
+
+        if (other.gameObject.CompareTag("Tut11"))
+        {
+            speakerUI.SetActive(true);
+
+            TutorialImageTextPair tut_currentPair = tut_imageTextPairCombo[10];
+
+            if (characterImg != null && tut_currentPair.tut_character != null)
+            {
+                characterImg.sprite = tut_currentPair.tut_character;
+            }
+
+            if (dialogueTMP != null && !string.IsNullOrEmpty(tut_currentPair.tut_dialogue))
+            {
+                dialogueTMP.text = FormatDialogueText(tut_currentPair.tut_dialogue);
+            }
+
+            StartCoroutine("DisableTutUI");
+
+        }
+    }
 
 
     IEnumerator DisableUI()

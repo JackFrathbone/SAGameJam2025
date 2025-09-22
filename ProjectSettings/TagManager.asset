@@ -11,6 +11,17 @@ TagManager:
   - Door
   - Switch
   - Boss
+  - Tut1
+  - Tut2
+  - Tut3
+  - Tut4
+  - Tut5
+  - Tut6
+  - Tut7
+  - Tut8
+  - Tut9
+  - Tut10
+  - Tut11
   layers:
   - Default
   - TransparentFX

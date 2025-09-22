@@ -148,8 +148,10 @@ MonoBehaviour:
     tut_dialogue: 'CAST SPELLS at the CRYSTAL SWITCH until it spins to ACTIVATE IT '
   - tut_character: {fileID: 21300000, guid: 5d0f38d3b82c4aa47951137716323dc3, type: 3}
     tut_dialogue: 'FIND the BOSS KEY somewhere else in the level to UNLOCK this DOOR '
+  - tut_character: {fileID: 21300000, guid: 5d0f38d3b82c4aa47951137716323dc3, type: 3}
+    tut_dialogue: 'ACTIVATE CRYSTAL SWITCHES to move PLATFORMS '
   barkseconds: 3
-  tutseconds: 3
+  tutseconds: 4.5
   speakerUI: {fileID: 1696790344081515986}
   dialogueTMP: {fileID: 7782659604214392576}
   characterImg: {fileID: 3931328199089196218}
