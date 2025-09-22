@@ -73,6 +73,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private List<AudioClip> _dashClips;
     [SerializeField] private List<AudioClip> _hurtClips;
 
+    [SerializeField] private AudioClip _youDiedClip;
+    [SerializeField] private AudioClip _giggleClip;
+
     [Header("Animation")]
     private Animator _animator;
     [SerializeField] GameObject _bloodBall;
@@ -496,6 +499,7 @@ public class PlayerController : MonoBehaviour
         _deathFade.DOFade(1f, 2f)
         .OnComplete(() =>
         {
+            _gameManager.Value.PlayAudioClip(_youDiedClip, 0.9f);
             _gameManager.Value.PauseGame();
             _deathMenu.SetActive(true);
         });
@@ -513,6 +517,8 @@ public class PlayerController : MonoBehaviour
 
         _gameManager.Value.UnPauseGame();
         AllowMovement();
+
+        _gameManager.Value.PlayAudioClip(_giggleClip, 0.9f);
 
         if (_lastUsedCrystal != null)
         {

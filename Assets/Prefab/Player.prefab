@@ -105,6 +105,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3fcd621be0d221649aba911e261d17c7, type: 3}
   - {fileID: 8300000, guid: 0df3480e965882044b1a057b64d4f23e, type: 3}
   - {fileID: 8300000, guid: d73eec9b1debef240a76e354867ff5c1, type: 3}
+  _youDiedClip: {fileID: 8300000, guid: edd76bfa95fcc9047bc8f0fdec9420ad, type: 3}
+  _giggleClip: {fileID: 8300000, guid: 441e3544b5460e6468bd4af1d7d7fb18, type: 3}
   _bloodBall: {fileID: 7656103345045527494}
   _deathMenu: {fileID: 7380339691646974348}
   _deathFade: {fileID: 2692149405195514603}
