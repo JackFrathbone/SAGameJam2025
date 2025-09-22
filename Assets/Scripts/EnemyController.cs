@@ -126,8 +126,6 @@ public class EnemyController : MonoBehaviour
 
     public void TakeDamage(int i)
     {
-        Debug.Log(i);
-
         _animator.SetTrigger("Hurt");
 
         _gameManager.Value.PlayAudioClip(_hurtSounds[Random.Range(0, _hurtSounds.Count)]);

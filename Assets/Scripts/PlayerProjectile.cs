@@ -49,6 +49,13 @@ public class PlayerProjectile : MonoBehaviour
                 enemy.TakeDamage(_damage);
             }
         }
+        else if (collision.collider.CompareTag("Boss"))
+        {
+            if (collision.collider.TryGetComponent<BossOrb>(out BossOrb boss))
+            {
+                boss.TakeDamage(_damage);
+            }
+        }
         else if (collision.collider.CompareTag("Door"))
         {
             if (collision.collider.TryGetComponent<Door>(out Door door))
