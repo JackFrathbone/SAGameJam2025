@@ -11,14 +11,6 @@ public class GameManager : MonoService
         _clipAudioSource = GetComponent<AudioSource>();
     }
 
-    private void Update()
-    {
-        if (Input.GetButtonDown("Cancel"))
-        {
-            Application.Quit();
-        }
-    }
-
     public void PlayAudioClip(AudioClip clip, float volume = 0.5f, bool randomPitch = false, float minPitch = 0.95f, float maxPitch = 1.05f, bool loop = false)
     {
         _clipAudioSource.pitch = randomPitch ? Random.Range(minPitch, maxPitch) : 1;
