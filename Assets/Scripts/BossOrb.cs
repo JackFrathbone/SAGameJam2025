@@ -4,6 +4,7 @@ using UnityEngine;
 public class BossOrb : MonoBehaviour
 {
     [Header("Settings")]
+    [SerializeField] int _bossHealth = 100;
     [SerializeField] float _rotationSpeed = 1f;
     [SerializeField] float _chargeWindup = 0.1f;
     [SerializeField] float _chargeSpeed = 8f;
@@ -16,18 +17,26 @@ public class BossOrb : MonoBehaviour
     [SerializeField] GameObject _projectilePrefab;
     [SerializeField] Transform _projectileParent;
 
+    [SerializeField] GameObject _eye;
+    private Rigidbody _rigidbody;
+
     [Header("Data")]
+    private int _currentHealth;
+
     private Vector3 _startPos;
     private Material _material;
     private bool _attacking;
-    private bool _rangedPhase;
+    private bool _shooting;
 
     private void Start()
     {
         _playerController = FindAnyObjectByType<PlayerController>();
         _material = GetComponent<MeshRenderer>().material;
+        _rigidbody = GetComponent<Rigidbody>();
 
         _startPos = transform.position;
+
+        _currentHealth = _bossHealth;
     }
 
     private void OnDisable()
@@ -38,12 +47,16 @@ public class BossOrb : MonoBehaviour
 
     private void Update()
     {
+
+        if (!_attacking || _shooting)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(_playerController.transform.position - transform.position);
+
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * _rotationSpeed);
+        }
+
         if (_attacking)
             return;
-
-        Quaternion targetRotation = Quaternion.LookRotation(_playerController.transform.position - transform.position);
-
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * _rotationSpeed);
 
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 50f))
         {
@@ -90,12 +103,13 @@ public class BossOrb : MonoBehaviour
     private void Shoot()
     {
         _attacking = true;
+        _shooting = true;
 
-        SpawnProjectile();
-        Invoke("SpawnProjectile", 0.05f);
-        Invoke("SpawnProjectile", 0.1f);
+        float shootTime = Random.Range(1f, 5f);
 
-        Invoke("EndShoot", 1.5f);
+        InvokeRepeating("SpawnProjectile", 0f, 0.25f);
+
+        Invoke("EndShoot", shootTime);
     }
 
     private void SpawnProjectile()
@@ -106,6 +120,23 @@ public class BossOrb : MonoBehaviour
 
     private void EndShoot()
     {
+        CancelInvoke();
+
+        _shooting = false;
         _attacking = false;
+    }
+
+    public void TakeDamage(int i)
+    {
+        _currentHealth -= i;
+
+        if(_currentHealth <= 0)
+        {
+            gameObject.tag = "Untagged";
+            _eye.SetActive(false);
+            _rigidbody.isKinematic = false;
+            _rigidbody.useGravity = true;
+            Destroy(this);
+        }
     }
 }
