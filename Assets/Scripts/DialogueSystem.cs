@@ -9,6 +9,7 @@ public class DialogueSystem : MonoBehaviour
 {
     [SerializeField] public ImageTextPair[] imageTextPairCombo;
     [SerializeField] public TutorialImageTextPair[] tut_imageTextPairCombo;
+    [SerializeField] public BossImageTextPair[] boss_imageTextPairCombo;
 
     [SerializeField] private float barkseconds;
     [SerializeField] private float tutseconds;
@@ -49,20 +50,22 @@ public class DialogueSystem : MonoBehaviour
         }
 
 
+  
+
         if (other.gameObject.CompareTag("BossPrompt"))
         {
             speakerUI.SetActive(true);
 
-            ImageTextPair boss = imageTextPairCombo[36];
+            BossImageTextPair boss = boss_imageTextPairCombo[0];
 
-            if (characterImg != null && boss.character != null)
+            if (characterImg != null && boss.boss_character != null)
             {
-                characterImg.sprite = boss.character;
+                characterImg.sprite = boss.boss_character;
             }
 
-            if (dialogueTMP != null && !string.IsNullOrEmpty(boss.dialogue))
+            if (dialogueTMP != null && !string.IsNullOrEmpty(boss.boss_dialogue))
             {
-                dialogueTMP.text = FormatDialogueText(boss.dialogue);
+                dialogueTMP.text = FormatDialogueText(boss.boss_dialogue);
             }
 
 
@@ -326,4 +329,11 @@ public class TutorialImageTextPair
 {
     public Sprite tut_character;
     public string tut_dialogue;
+}
+
+[System.Serializable]
+public class BossImageTextPair
+{
+    public Sprite boss_character;
+    public string boss_dialogue;
 }
