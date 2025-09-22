@@ -2299,8 +2299,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 547, y: -524}
-  m_SizeDelta: {x: 608.48926, y: 432.13757}
+  m_AnchoredPosition: {x: 613, y: -306.81}
+  m_SizeDelta: {x: 608.4893, y: 300.3705}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5158830442937454670
 MonoBehaviour:
@@ -2320,7 +2320,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: -39
+  m_Spacing: 10
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -7254,13 +7254,14 @@ GameObject:
   - component: {fileID: 1373370081946297088}
   - component: {fileID: 5908099218517703476}
   - component: {fileID: 4278868680196487915}
+  - component: {fileID: 1560410558596740593}
   m_Layer: 5
   m_Name: Quit Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8561354660987307762
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7277,9 +7278,9 @@ RectTransform:
   - {fileID: 5257876394433538797}
   m_Father: {fileID: 7978694842387764579}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 304.24466, y: -319.13757}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 608.4893, y: 114.0917}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1373370081946297088
@@ -7363,7 +7364,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5908099218517703476}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4967228453507894418}
+        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
+        m_MethodName: QuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1560410558596740593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5989934863301725397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29c7a6733d5c6b74699cfdc8b73585fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WebGLSpecificObjectDisabler
 --- !u!1 &6062669457564481387
 GameObject:
   m_ObjectHideFlags: 0

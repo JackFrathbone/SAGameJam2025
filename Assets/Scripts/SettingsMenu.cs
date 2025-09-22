@@ -50,7 +50,10 @@ public class SettingsMenu : MonoBehaviour
         
     }
 
-
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 
     public void ChangeMusicVolume()
     {
